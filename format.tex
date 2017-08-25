@@ -1,0 +1,234 @@
+% !Mode:: "TeX:UTF-8"
+\setlength{\subfigbottomskip}{0pt}
+\CTEXoptions[bibname={主要参考文献}]
+\CTEXsetup[name={,},number={}]{chapter}
+\captionsetup{labelsep=space,font=small,justification=centering}
+\arraycolsep=1.7pt
+\graphicspath{{figures/}}
+\renewcommand{\subcapsize}{\zihao{5}}
+\renewcommand{\thesubfigure}{\alph{subfigure})}
+\setcounter{secnumdepth}{4}
+\newcommand{\pozhehao}{\raisebox{0.1em}{------}}
+\titleformat{\chapter}{\center\zihao{-2}\heiti}{\chaptertitlename}{0.5em}{}
+\titlespacing{\chapter}{0pt}{-4.5mm}{8mm}
+\titleformat{\section}{\zihao{-3}\heiti}{\thesection}{0.5em}{}
+\titlespacing{\section}{0pt}{4.5mm}{4.5mm}
+\titleformat{\subsection}{\zihao{4}\heiti}{\thesubsection}{0.5em}{}
+\titlespacing{\subsection}{0pt}{4mm}{4mm}
+\titleformat{\subsubsection}{\zihao{-4}\heiti}{\thesubsubsection}{0.5em}{}
+\titlespacing{\subsubsection}{0pt}{0pt}{0pt}
+\makeatletter
+\renewcommand\thesection{\@arabic \c@section} % 前面不带 thechapter
+\makeatother
+
+\theoremstyle{plain}
+\theorembodyfont{\songti\rmfamily}
+\theoremheaderfont{\heiti\rmfamily}
+\newtheorem{definition}{\heiti 定义}
+\newtheorem{example}{\heiti 例}
+\newtheorem{algo}{\heiti 算法}
+\newtheorem{theorem}{\heiti 定理}
+\newtheorem{axiom}{\heiti 公理}
+\newtheorem{proposition}{\heiti 命题}
+\newtheorem{lemma}{\heiti 引理}
+\newtheorem{corollary}{\heiti 推论}
+\newtheorem{remark}{\heiti 注解}
+\newenvironment{proof}{\noindent{\heiti 证明：}}{\hfill $ \square $ \vskip 4mm}
+\theoremsymbol{$\square$}
+
+% 定义页眉和页脚 使用fancyhdr 宏包
+\newcommand{\makeheadrule}{
+\rule[7pt]{\textwidth}{0.75pt} \\[-23pt]
+\rule{\textwidth}{2.25pt}}
+\renewcommand{\headrule}{
+    {\if@fancyplain\let\headrulewidth\plainheadrulewidth\fi
+     \makeheadrule}}
+\makeatother
+		
+\pagestyle{fancyplain}
+\renewcommand{\chaptermark}[1]{\relax}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\fancyhf{}
+\ifxueweidoctor
+  \fancyhead[CO]{\songti \zihao{-5}\rightmark}
+  \fancyhead[CE]{\songti \zihao{-5} 哈尔滨工业大学博士学位论文开题报告}%
+  \fancyfoot[C]{\zihao{-5} -~\thepage~-}
+	\renewcommand\bibsection{\section*{\centerline{\bibname}}
+	\markboth{哈尔滨工业大学博士学位论文开题报告}{\bibname}}
+\fi
+\ifxueweimaster
+  \fancyhead[C]{\songti \zihao{-5} 哈尔滨工业大学硕士学位论文开题报告}
+  \fancyfoot[C]{\zihao{-5} -~\thepage~-}
+	\renewcommand\bibsection{\section*{\centerline{\bibname}}
+	\markboth{哈尔滨工业大学硕士学位论文开题报告}{\bibname}}
+\fi
+
+\renewcommand{\CJKglue}{\hskip 0.56pt plus 0.08\baselineskip} %加大字间距，使每行33个字
+\def\defaultfont{\renewcommand{\baselinestretch}{1.62}\normalsize\selectfont}
+% 调整罗列环境的布局
+\setitemize{leftmargin=3em,itemsep=0em,partopsep=0em,parsep=0em,topsep=-0em}
+\setenumerate{leftmargin=3em,itemsep=0em,partopsep=0em,parsep=0em,topsep=0em}
+\renewcommand{\theequation}{\arabic{equation}}
+\renewcommand{\thetable}{\arabic{table}}
+\renewcommand{\thefigure}{\arabic{figure}}
+
+\makeatletter
+\renewcommand{\p@subfigure}{\thefigure~}
+\makeatother
+
+\newcommand{\citeup}[1]{\textsuperscript{\cite{#1}}} % for WinEdt users
+
+% 封面、摘要、版权、致谢格式定义
+\makeatletter
+\def\title#1{\def\@title{#1}}\def\@title{}
+\def\titlesec#1{\def\@titlesec{& \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf{#1}}}}\def\@titlesec{}
+\def\affil#1{\def\@affil{#1}}\def\@affil{}
+\def\subject#1{\def\@subject{#1}}\def\@subject{}
+\def\author#1{\def\@author{#1}}\def\@author{}
+\def\bdate#1{\def\@bdate{#1}}\def\@bdate{}
+\def\supervisor#1{\def\@supervisor{#1}}\def\@supervisor{}
+\def\assosupervisor#1{\def\@assosupervisor{\textbf{副\hfill 导\hfill 师} & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf {#1}}\\}}\def\@assosupervisor{}
+\def\cosupervisor#1{\def\@cosupervisor{\textbf{联\hfill 合\hfill 导\hfill 师} & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf {#1}}\\}}\def\@cosupervisor{}
+\def\date#1{\def\@date{#1}}\def\@date{}
+\def\stuno#1{\def\@stuno{#1}}\def\@stuno{}
+% 定义封面
+\ifxueweidoctor
+\def\makecover{
+    \thispagestyle{empty}
+    \zihao{-2}\vspace*{10mm}
+		\renewcommand{\CJKglue}{\hskip 2pt plus 0.08\baselineskip}
+    \centerline{\kaishu\textbf{哈尔滨工业大学}}
+		\vspace{10mm}
+		\centerline{\zihao{2}\songti\textbf{博士学位论文开题报告}}
+		\renewcommand{\CJKglue}{\hskip 0pt plus 0.08\baselineskip}
+
+    \zihao{3}\vspace{2\baselineskip}
+    \hspace*{36pt}{\songti
+	\renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{l@{}l}
+    \textbf{院\hfill (系)}   & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\@affil}\\
+    \textbf{学\hfill 科}     & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\@subject}\\
+    \textbf{导\hfill 师}     & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\@supervisor}\\
+    \@assosupervisor
+	\@cosupervisor
+    \textbf{研\hfill 究\hfill 生}      & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\@author}\\
+    \textbf{入\hfill 学\hfill 时\hfill 间}  & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\@bdate}\\
+    \textbf{开题报告日期} & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\@date}\\
+    \textbf{论\hfill 文\hfill 题\hfill 目}  & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\@title}\\
+    \@titlesec
+    \end{tabular}\renewcommand{\arraystretch}{1}}
+	\vfill
+    \centerline{\songti\textbf{研究生院培养处}}
+
+
+%%定义内封
+\newpage
+\thispagestyle{empty}
+\zihao{5}\vspace*{2em}
+\begin{center}
+  \heiti\zihao{3}说\hspace{3em}明
+\end{center}
+\vspace*{40pt}
+	\renewcommand{\arraystretch}{1.25}
+    {\songti\zihao{5}
+    \hangindent=2em\noindent 一、开题报告应包括下列主要内容：
+    \begin{enumerate}[leftmargin=36pt]
+    \item 课题来源及研究的目的和意义；
+    \item 国内外在该方向的研究现状及分析（文献综述）；
+    \item 前期的理论研究与试验论证工作的结果；
+    \item 学位论文的主要研究内容、实施方案及其可行性论证；
+    \item 论文进度安排，预期达到的目标；
+    \item 为完成课题已具备和所需的条件、外协计划及经费；
+    \item 预计研究过程中可能遇到的困难、问题，以及解决的途径；
+    \item 主要参考文献（应在~50~篇以上，其中外文资料不少于二分之一，参考文献中近五年内发表的文献一般不少于三分之一，且必须有近二年内发表的文献资料）。
+    \end{enumerate}
+    \noindent 二、开题报告字数应不少于~1.5~万字。
+
+    \noindent 三、开题报告时间应最迟应于第四学期结束前完成。
+
+    \hangindent=2em\noindent 四、若本次开题报告未通过，需在三个月内再次进行开题报告。第二次学位论文开题报告
+    仍未通过者，将取消其学籍。
+
+    \hangindent=2em\noindent 五、开题报告结束后，评议小组要填写《博士学位论文开题报告评议结果》上报院（系）研
+    究生教学秘书备案。
+
+    \noindent 六、此表不够填写时，可另加附页。
+    }
+	\renewcommand{\arraystretch}{1}
+    \clearpage
+}
+\fi
+
+\ifxueweimaster
+\def\makecover{
+    \thispagestyle{empty}
+    \zihao{-2}\vspace*{10mm}
+		\renewcommand{\CJKglue}{\hskip 2pt plus 0.08\baselineskip}
+    \centerline{\kaishu\textbf{哈尔滨工业大学}}
+		
+		\vspace{10mm}
+		\centerline{\zihao{2}\songti\textbf{硕士学位论文开题报告}}
+
+		\renewcommand{\CJKglue}{\hskip 0pt plus 0.08\baselineskip}
+\vspace{30pt}
+\zihao{-2}
+\begin{center}\songti\textbf{题~目：\@title}\end{center}
+\vspace{30pt}
+    \zihao{3}
+    \hspace*{68pt}{\songti
+	\renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{l@{}l}
+    \textbf{院\hfill （系）}   & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\@affil}\\
+    \textbf{学\hfill 科}     & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\@subject}\\
+    \textbf{导\hfill 师}     & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\@supervisor}\\
+    \@assosupervisor
+	\@cosupervisor
+    \textbf{研\hfill 究\hfill 生}      & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\@author}\\
+    \textbf{学\hfill 号}  & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\@stuno}\\
+    \textbf{开题报告日期} & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\@date}\\
+    \end{tabular}
+		\renewcommand{\arraystretch}{1}}
+	\vfill
+    \centerline{\songti\textbf{研究生院培养处制}}
+
+
+%%定义内封
+\newpage
+\thispagestyle{empty}
+\zihao{5}\vspace*{2em}
+\begin{center}
+  \heiti\zihao{3}说\hspace{3em}明
+\end{center}
+\vspace*{40pt}
+	\renewcommand{\arraystretch}{1.25}
+    {\songti\zihao{5}
+    \hangindent=2em
+	\noindent 一、开题报告应包括下列主要内容：
+    \begin{enumerate}[leftmargin=36pt]
+	\item 课题来源及研究的目的和意义；
+	\item 国内外在该方向的研究现状及分析；
+	\item 主要研究内容；
+	\item 研究方案及进度安排，预期达到的目标；
+	\item 为完成课题已具备和所需的条件和经费；
+	\item 预计研究过程中可能遇到的困难和问题，以及解决的措施；
+	\item 主要参考文献。
+    \end{enumerate}
+    \noindent 二、对开题报告的要求
+	\begin{enumerate}[leftmargin=36pt]
+	\item 开题报告的字数应在~5000~字以上；
+	\item 阅读的主要参考文献应在~20~篇以上，其中外文资料应不少于三分之一。硕士研究生应在导师的指导下着重查阅近年内发表的中、\hspace{-1pt} 外文期刊文章。\hspace{-1pt}本学科的基础和专业课教材一般不应列为参考资料。
+    \end{enumerate}
+    \noindent 三、开题报告时间应最迟不得超过第三学期的第三周末。
+
+    \hangindent=2em\noindent 四、如硕士生首次开题报告未通过，\hspace{-2pt}需在一个月内再进行一次。\hspace{-3pt}若仍不通过，\hspace{-2pt}则停止硕士论文工作。
+
+    \noindent 五、此表不够填写时，可另加附页。
+
+\hangindent=2em\noindent 六、开题报告进行后，此表同硕士学位论文开题报告评议结果存各系（院）研究生秘书书处，以备研究生院及所属学院进行检查。
+
+    }
+	\renewcommand{\arraystretch}{1}
+    \clearpage
+}
+\fi
+\makeatother

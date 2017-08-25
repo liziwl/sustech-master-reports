@@ -1,0 +1,53 @@
+% !Mode:: "TeX:UTF-8" 
+
+\section{模板的其它说明}
+
+\subsection{单层罗列环境}
+哈工大学位论文一般可采用两种罗列环境：一种是并列条目有同样标签的~\verb|itemize|~罗列环境，另一种是具有自动排序编号符号的~\verb|enumerate|~罗列环境。这两种罗列环境的样式参数可参考图~\ref{list}。
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = 0.6\textwidth]{list}
+\caption{罗列环境参数示意图}\label{list}\vspace{-1em}
+\end{figure}
+通过调用~enumitem~宏包可以很方便地控制罗列环境的布局，其~format.tex~文件中的~\verb|\setitemize|~和~\verb|\setenumerate|~命令分别用来设置~\verb|itemize|~和~\verb|enumerate|~环境的样式参数。采用~\verb|itemize|~单层罗列环境的排版形式如下：
+\begin{itemize}
+\item 第一个条目文本内容
+\item 第二个条目文本内容
+\item 第三个条目文本内容
+\end{itemize}
+其代码如下
+\begin{verbatim}
+\begin{itemize}
+  \item 第一个条目文本内容
+  \item 第二个条目文本内容
+  ...
+  \item 第三个条目文本内容
+\end{itemize}
+\end{verbatim}
+采用~\verb|enumerate|~单层罗列环境的排版形式如下：
+\begin{enumerate}
+\item 第一个条目文本内容
+\item 第二个条目文本内容
+\item 第三个条目文本内容
+\end{enumerate}
+其代码如下
+\begin{verbatim}
+\begin{enumerate}
+  \item 第一个条目文本内容
+  \item 第二个条目文本内容
+  ...
+  \item 第三个条目文本内容
+\end{enumerate}
+\end{verbatim}
+
+\subsection{定理定义}
+
+若需要书写定理定义等内容，而且带有顺序编号，需要采用如下环境。除了~\verb|proof|~环境之外，其余~9~个环境都可以有一个可选参数作为附加标题。
+
+\begin{center}\vspace{0.5em}\noindent\zihao{5}\begin{tabularx}{0.7\textwidth}{lX|lX}
+定理 & \verb|theorem|~环境 & 定义 & \verb|definition|~环境 \\
+例 & \verb|example|~环境 & 算法 & \verb|algo|~环境 \\
+公理 & \verb|axiom|~环境 & 命题 & \verb|proposition|~环境 \\
+引理 & \verb|lemma|~环境 & 推论 & \verb|corollary|~环境 \\
+注解 & \verb|remark|~环境 & 证明 & \verb|proof|~环境 \\
+\end{tabularx}\end{center}
