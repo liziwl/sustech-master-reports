@@ -6,13 +6,11 @@
 ~FRFT~是一种重要的时频分析工具，近几年得到了广泛关注和研究，已经应用在一些领域中。FRFT~是一种广义傅里叶变换，根本特点可以理解为傅里叶变换特征值的分数化，对信号的处理过程可以立即为时频平面的旋转。如图~\ref{shipinxuanzhuan}~所示，$t$~轴与~$\omega$~轴可以看为传统的时域与频域。$\alpha$~为分数傅里叶变换的旋转角度。$u$~轴所在的分数傅里叶变换域被简称为分数域。
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = 0.8\textwidth]{figure2_1.eps}
+\includegraphics[width = 0.7\textwidth]{figure2_1.eps}
 \caption{时频平面旋转示意图}\vspace{-1em}\label{shipinxuanzhuan}
 \end{figure}
 
-分数傅里叶变换有着多种定义方式，大致可以分为两大类：经典类分数傅里叶变换（CFRFT）和加权类分数傅里叶变换（WFRFT）。这里仅介绍加权类分数傅里叶变换。
-
-加权分数傅里叶变换是~C.Shih~利用态函数叠加方法提出的一种新的分数傅里叶变换定义。基本思想是利用经典傅里叶变换整数幂运算的~4~周期性，将新的分数傅里叶变换定义成~4~个态函数的线性组合，组合系数则为分数傅里叶变换阶数的函数。对一个信号~$f(x)$~进行~0，1，2，3~次傅里叶变换的结果分别为~$f(x)$~，~$G(x)$~，~$f(-x)$~，~$G(-x)$~,这四个函数便是四项加权分数傅里叶变换（4-WFRFT）的基函数，WFRFT~的定义如下：
+分数傅里叶变换有着多种定义方式，大致可以分为两大类：经典类分数傅里叶变换（CFRFT）和加权类分数傅里叶变换（WFRFT）。这里仅介绍加权类分数傅里叶变换。加权分数傅里叶变换是~C.Shih~利用态函数叠加方法提出的一种新的分数傅里叶变换定义。基本思想是利用经典傅里叶变换整数幂运算的~4~周期性，将新的分数傅里叶变换定义成~4~个态函数的线性组合，组合系数则为分数傅里叶变换阶数的函数。对一个信号~$f(x)$~进行~0，1，2，3~次傅里叶变换的结果分别为~$f(x)$~，~$G(x)$~，~$f(-x)$~，~$G(-x)$~,这四个函数便是四项加权分数傅里叶变换（4-WFRFT）的基函数，WFRFT~的定义如下：
 \begin{equation}
 {\mathcal{F}^\alpha }\left[ {f\left( x \right)} \right] = {\omega _0}\left( \alpha  \right)f\left( x \right) + {\omega _1}\left( \alpha  \right)F\left( x \right) + {\omega _2}\left( \alpha  \right)f\left( { - x} \right) + {\omega _3}\left( \alpha  \right)F\left( { - x} \right)
 \end{equation}
@@ -94,7 +92,7 @@
 ~4-WFRFT~模块的物理实现过程如图~\ref{jiaquanshixianguocheng}~：
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = 0.9\textwidth]{figure2_4.eps}
+\includegraphics[width = 0.8\textwidth]{figure2_4.eps}
 \caption{4-WFRFT~物理实现过程}\vspace{-1em}\label{jiaquanshixianguocheng}
 \end{figure}
 长度为~$N$~的复数序列~$X_0$~为原始需调制信号，分四路进行加权求和，其中两路为原始时域信号与其反转后的信号，另外两路信号为原始序列经~DFT~的结果与其反转，在实现过程中当~$N$~为~2~的整数次幂时可以直接用~FFT~模块代替~DFT~，即完成一次~4-WFRFT~变换仅需一次~DFT~和两次信号反转，计算量与实际系统中实现的复杂程度与~FFT~相近。容易在通信系统中实现。其变换过程数学模型如下：
@@ -110,23 +108,25 @@
 基于~WFRFT~在数字通信中的物理意义，文献[]的作者给出了混合载波通信系统模型如图~\ref{xitongjiegou}~：
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = 0.9\textwidth]{figure2_3.eps}
+\includegraphics[width = 0.8\textwidth]{figure2_3.eps}
 \caption{基于~4-WFRFT~通信系统结构}\vspace{-1em}\label{xitongjiegou}
 \end{figure}
 
 从图中可以看出，混合载波通信系统与~OFDM~系统相似，该通信系统模型可以在基于块传输方式的单载波和~OFDM~系统之间实现平滑过渡：通过阶数~$\alpha$~进行转换，当~$\alpha$~为非整数时，系统对应为单载波与多载波的混合形式。这一方面可以作为沟通传统单载波、多载波体制的桥梁；另一方面，在很多复杂、多变的环境或条件约束下，混合载波通信系统可能具有较传统载波体制更灵活的应对方式和更好的性能表现。
 
-从上面的分析得到，~4-WFRFT~对信号的处理过程实际上包含了单载波与多载波的实现过程，所以，~4-WFRFT~变换后的信号特征也与传统调制下的信号有所不同。根据式~(\ref{WFRFTgongshi})~给出的~4-WFRFT~数学表达定义可以看出，~4-WFRFT~的输出信号形式不仅仅与输入信号的信息有关，在很大程度上由加权系数来决定变换后信号中所含时频信息的比重，加权系数又由变换阶数~$\alpha$~决定，当~$\alpha$~变化时引起各个加权信号的幅值伸缩与相位旋转，从而决定了~4-WFRFT~输出信号的不同。图~\ref{xingzuotu}~给出了~QPSK~信号分别经过变换阶数为~0~，0.1~，0.25~，1~的~4-WFRFT~变换处理后的星座图，
+从上面的分析得到，~4-WFRFT~对信号的处理过程实际上包含了单载波与多载波的实现过程，所以，~4-WFRFT~变换后的信号特征也与传统调制下的信号有所不同。根据式~(\ref{WFRFTgongshi})~给出的~4-WFRFT~数学表达定义可以看出，~4-WFRFT~的输出信号形式不仅仅与输入信号的信息有关，在很大程度上由加权系数来决定变换后信号中所含时频信息的比重，加权系数又由变换阶数~$\alpha$~决定，当~$\alpha$~变化时引起各个加权信号的幅值伸缩与相位旋转，从而决定了~4-WFRFT~输出信号的不同。
+
+图~\ref{xingzuotu}~给出了~QPSK~信号分别经过变换阶数为~0~，0.1~，0.25~，1~的~4-WFRFT~变换处理后的星座图，
 \begin{figure}[htbp]
 \centering
 \subfigure{\label{xingzuo1}}\addtocounter{subfigure}{-2}
-\subfigure{\subfigure[~$\alpha$~= 0]{\includegraphics[width=0.4\textwidth]{xingzuo0.eps}}}
+\subfigure{\subfigure[~$\alpha$~= 0]{\includegraphics[width=0.36\textwidth]{xingzuo0.eps}}}
 \subfigure{\label{xingzuo2}}\addtocounter{subfigure}{-2}
-\subfigure{\subfigure[~$\alpha$~= 0.1]{\includegraphics[width=0.4\textwidth]{xingzuo01.eps}}}
+\subfigure{\subfigure[~$\alpha$~= 0.1]{\includegraphics[width=0.36\textwidth]{xingzuo01.eps}}}
 \subfigure{\label{xingzuo3}}\addtocounter{subfigure}{-2}
-\subfigure{\subfigure[~$\alpha$~= 0.25]{\includegraphics[width=0.4\textwidth]{xingzuo025.eps}}}
+\subfigure{\subfigure[~$\alpha$~= 0.25]{\includegraphics[width=0.36\textwidth]{xingzuo025.eps}}}
 \subfigure{\label{xingzuo4}}\addtocounter{subfigure}{-2}
-\subfigure{\subfigure[~$\alpha$~= 1]{\includegraphics[width=0.4\textwidth]{xingzuo1.eps}}}
+\subfigure{\subfigure[~$\alpha$~= 1]{\includegraphics[width=0.38\textwidth]{xingzuo1.eps}}}
 \caption{~4-WFRFT~变换后信号星座图}\label{xingzuotu}\vspace{-1em}
 \end{figure}
 可以看出随着~$\alpha$~的增大，原本重叠在一起的星座点逐渐旋转并散开，随着~$\alpha$~进一步增大，星座点的边界逐渐模糊，信号所含频域成分逐渐增加，最终当~$\alpha$~增大到~1~时，所有信号点完全混叠在一起，无法区分，在复平面呈现出一种类高斯的分布，在接收端只有通过与之对应的~$-\alpha$~阶反变换才能够将信号正确解调。通过信号星座图的描绘，展现了~WFRFT~信号灵活多变的特点。单参数~WFRFT~信号的星座图会随着阶数的改变而呈现发散、 旋转、 汇聚等变化， 星座点分布呈现类高斯特性。WFRFT~的这种信号形式比传统比传统单载波和多载波信号具有更均匀的时频能量分布。这一分布特性有利于信号在复杂多变的场景中，以及时频域同时存在干扰的信道下保持性能鲁棒性。

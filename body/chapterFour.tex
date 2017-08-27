@@ -34,11 +34,11 @@ R(n-\tau) = T(n-\tau) + z(n-\tau)
 \end{equation}
 
 当接收端时间同步不精确，定时同步的起点位于循环前缀内部时，
-\begin{align}\label{huajianjieguo}
-\tilde X_i(n) &= {\mathcal{F}^\alpha }\left ( R_i\left ( n-\tau \right ) \right ) \\
+\begin{align}\label{}
+\tilde X_i(n) &= {\mathcal{F}^\alpha }\left ( R_i\left ( n-\tau \right ) \right ) \nonumber \\
 &= w_0^{- \alpha }R_i(n-\tau) + w_1^{- \alpha }{{\mathcal{F}^1}\left ( R_i\left ( n-\tau \right ) \right )}
 + w_2^{- \alpha }{{\mathcal{F}^2}\left ( R_i\left ( n-\tau \right ) \right )}
-+ w_3^{- \ }{{\mathcal{F}^3}\left ( R_i\left ( n-\tau \right ) \right )} \\
++ w_3^{- \ }{{\mathcal{F}^3}\left ( R_i\left ( n-\tau \right ) \right )} \nonumber \\
 &= \underbrace {w_0^{- \alpha }R_i(n-\tau) + w_2^{- \alpha }R_i(\tau -n)}_{ISI} + w_1^{- \alpha }{{\mathcal{F}}\left ( R_i\left ( n \right ) \right )} {e^{-j2\pi \frac{{\varepsilon n}}{N}}} + w_3^{- \alpha }{{\mathcal{F}}\left ( R_i\left ( -n \right ) \right )} {e^{-j2\pi \frac{{\varepsilon n}}{N}}}
 \end{align}
 
@@ -48,7 +48,8 @@ R(n-\tau) = T(n-\tau) + z(n-\tau)
 \includegraphics[width = 0.8\textwidth]{plot_ber_at_time_error.eps}
 \caption{不同调制阶数下HC系统在2个定时误差下误码性能比较}\vspace{-1em}\label{plot_ber_at_time_error}
 \end{figure}
-图~\ref{plot_ber_at_time_error}~给出了~AWGN~信道下混合载波通信系统当在非最佳采样点下误码性能的比较，仿真参数选择一个~WFRFT~符号载波数为2048，数据符号所占载波数为1200，采用16倍上采样，收发双方均采用升余弦滚降滤波器进行铝箔，在接受端存在~2~个采样点的误差进行解调下，当调制阶数~1~时，此时混合载波通信系统只包含多载波通信过程，此时系统抗定时误差性能最强。当调制阶数~0~时，混合载波通信系统只包含单载波成分，其性能受定时误差影响较大大。当调制阶数介于~0~到~1~之间时，此时混合载波通信系统同时包含有单载波成分和多载波成分，且阶数越小，包含的单载波成分也越多，此时受定时采样误差影响也越大。从图中也可以看出，虽然仅仅有2个采样点误差，但与最佳采样点的系统性能相差巨大，故定时同步对系统性能的保证十分关键。
+
+图~\ref{plot_ber_at_time_error}~给出了~AWGN~信道下混合载波通信系统当在非最佳采样点下误码性能的比较，仿真参数选择一个~WFRFT~符号载波数为2048，数据符号所占载波数为1200，采用16倍上采样，收发双方均采用升余弦滚降滤波器进行滤波，在接受端存在~2~个采样点的误差进行解调下，当调制阶数~1~时，此时混合载波通信系统只包含多载波通信过程，此时系统抗定时误差性能最好。当调制阶数~0~时，混合载波通信系统只包含单载波成分，其性能受定时误差影响较大大。当调制阶数介于~0~到~1~之间时，此时混合载波通信系统同时包含有单载波成分和多载波成分，且阶数越小，包含的单载波成分也越多，此时受定时采样误差影响也越大。图中黑线为无采样点偏差下的混合载波通信系统误码率性能，从图中也可以看出，虽然仅仅有2个采样点误差，但与最佳采样点的系统性能相差巨大，故定时同步对系统性能的保证十分关键。
 
 另一方面，当混合载波通信系统中存在频偏影响时，发射信号受到频偏的影响在接收端的基带信号表示形式如为~$R(n) = T(n){e^{j2\pi \Delta f(n){T_s}}} + z(n)$~。接收端的解调过程需对接收信号进行~$-\alpha$~阶~4-WFRFT~变换以恢复原始信号~$X(n)$~，将接收信号代入解调公式可以得出解调结果数学表达式如公式~(\ref{jietiaojieguo})~所示：
 \begin{eqnarray}\label{jietiaojieguo}
@@ -74,7 +75,7 @@ R(n-\tau) = T(n-\tau) + z(n-\tau)
 \end{equation}
 为变换域~ICI~系数。对式~(\ref{jietiaojieguo})~进一步化简得到式~(\ref{huajianjieguo})~
 \begin{align}\label{huajianjieguo}
-\tilde X(n) &= (w_0^{ - \alpha }w_0^\alpha  + w_2^{ - \alpha }w_2^\alpha )X(n){e^{j2\pi \frac{{\varepsilon n}}{N}}} + \sum\limits_{m = 0}^{N - 1} {X(m){\lambda _{m - n}}}  + Z(n) \\
+\tilde X(n) &= (w_0^{ - \alpha }w_0^\alpha  + w_2^{ - \alpha }w_2^\alpha )X(n){e^{j2\pi \frac{{\varepsilon n}}{N}}} + \sum\limits_{m = 0}^{N - 1} {X(m){\lambda _{m - n}}}  + Z(n) \nonumber \\
 &= \underbrace {(w_0^{ - \alpha }w_0^\alpha  + w_2^{ - \alpha }w_2^\alpha )X(n){e^{j2\pi \frac{{\varepsilon n}}{N}}} + X(n){\lambda _0}}_{C(n)} + \underbrace {\sum\limits_{m = 0,m \ne n}^{N - 1} {X(m){\lambda _{m - n}}} }_{ICI(n)} + Z(n)
 \end{align}
 其中~$C(n)$~表示系统有用信号，$ICI(n)$~表示频偏引起的载波间相互影响带来的干扰信号。
