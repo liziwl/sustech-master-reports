@@ -1,0 +1,29 @@
+% !TeX encoding = UTF-8
+% !TeX program = xetex
+\input docstrip.tex
+\keepsilent
+\askforoverwritefalse
+\preamble
+-------------------------------------------------------------------
+GB/T 7714-2015 BibTeX Style
+https://github.com/CTeX-org/gbt7714-bibtex-style
+Version: 2020/06/08 v2.0.2
+-------------------------------------------------------------------
+Copyright (C) 2016-\the\year by Zeping Lee <zepinglee AT gmail.com>
+-------------------------------------------------------------------
+This file may be distributed and/or modified under the
+conditions of the LaTeX Project Public License, either version 1.3c
+of this license or (at your option) any later version.
+The latest version of this license is in
+   https://www.latex-project.org/lppl.txt
+and version 1.3c or later is part of all distributions of LaTeX
+version 2005/12/01 or later.
+-------------------------------------------------------------------
+\endpreamble
+\nopostamble
+\generate{
+  \file{gbt7714.sty}{\from{gbt7714.dtx}{package}}
+  \file{gbt7714-numerical.bst}{\from{gbt7714.dtx}{2015,numerical}}
+  \file{gbt7714-author-year.bst}{\from{gbt7714.dtx}{2015,authoryear}}
+}
+\endbatchfile
