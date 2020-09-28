@@ -1,0 +1,61 @@
+% !Mode:: "TeX:UTF-8"
+
+\def\xuewei{Master} % 定义学位 Doctor or Master
+
+\documentclass[cs4size,openany,UTF8]{ctexbook}
+\usepackage[a4paper,text={160true mm,234true mm},top=30.5true mm,left=25true mm,head=5true mm,headsep=2.5true mm,foot=8.5true mm]{geometry}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{caption}
+\usepackage{amsmath}
+\usepackage{txfonts}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{ntheorem}
+\usepackage{titlesec}
+\usepackage{subfigure}
+\usepackage{tabularx}
+\usepackage[sort&compress,numbers]{natbib}
+\usepackage[boxed,linesnumbered,algochapter]{algorithm2e}	
+
+\begin{document}
+
+\newif\ifxueweidoctor
+\newif\ifxueweimaster
+\def\temp{Doctor}
+\ifx\temp\xuewei
+  \xueweidoctortrue  \xueweimasterfalse
+\fi
+\def\temp{Master}
+\ifx\temp\xuewei
+  \xueweidoctorfalse  \xueweimastertrue
+\fi
+
+\input{format}
+\input{cover}
+\zihao{-4}
+
+
+\tableofcontents
+\thispagestyle{empty}
+\clearpage{\pagestyle{empty}}
+\setcounter{page}{1}
+
+
+%\chapter{混合载波通信系统同步技术研究}
+\input{body/chapterOne}
+\input{body/chapterTwo}
+\input{body/chapterThree}
+\input{body/chapterFour}
+\input{body/chapterFive}
+
+\newpage
+
+\bibliographystyle{GBT7714-2005NLang-HIT}
+\addtolength{\bibsep}{-0.8em}
+\nocite{*}
+\bibliography{reference}
+
+\end{document}
