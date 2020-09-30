@@ -1,6 +1,6 @@
 call clean
-pdflatex main
+xelatex main
 bibtex main
-pdflatex main
-pdflatex main
+xelatex main
+xelatex main
 call clean

@@ -1,10 +1,10 @@
 .PHONY:clean
 
 main.pdf: main.tex
-	pdflatex main.tex
+	xelatex main.tex
 	bibtex main.aux
-	pdflatex main.tex
-	pdflatex main.tex
+	xelatex main.tex
+	xelatex main.tex
 clean:
 	rm -f *.aux
 	rm -f *.log

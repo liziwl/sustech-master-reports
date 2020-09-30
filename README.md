@@ -8,7 +8,8 @@
 
 ## 编译环境
 
-* pdflatex
+* xelatex
+  * 通过 overleaf 和 Windows 下编译
 
 ## Windows 使用
 
