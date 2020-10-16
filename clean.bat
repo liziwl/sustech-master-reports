@@ -9,9 +9,9 @@ del *.thm /s
 del *.toc /s
 del *.toe /s
 
-del *.lof 
+del *.lof
 del *.lot
-del *.out 
+del *.out
 
 del *.fen
 del *.ten

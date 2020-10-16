@@ -17,4 +17,5 @@
 
 ## Unix 使用
 
+* Arch 发行版安装 `ttf-ms-fonts` (Times New Roman等字体) 、Ubuntu 上请自行搜索
 * Makefile

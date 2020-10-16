@@ -12,3 +12,4 @@ clean:
 	rm -f *.bbl
 	rm -f *.blg
 	rm -f *.out
+	rm -f *.thm
