@@ -1,10 +1,14 @@
 # Master-FirstReport-Latex
 
-南方科技大学硕士开题报告
+南方科技大学硕士开题报告 （中/英）
+
+Thanks [Peng-YM](https://github.com/Peng-YM) for adapting the English template as required.
 
 ## 预览
 
-[预览PDF](./main.pdf)
+[预览 中文模板 PDF](./main-cn.pdf)
+
+[View English template](./main-en.pdf)
 
 ## 编译环境
 

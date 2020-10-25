@@ -1,6 +1,7 @@
 % !Mode:: "TeX:UTF-8"
 
 \def\xuewei{Master} % 定义学位 Doctor or Master
+\def\preferlanguage{English} % 设置当前语言，如使用中文注释本行
 
 \documentclass[cs4size,openany,UTF8]{ctexbook}
 \usepackage[a4paper,text={160true mm,234true mm},top=30.5true mm,left=25true mm,head=5true mm,headsep=2.5true mm,foot=8.5true mm]{geometry}
@@ -18,12 +19,16 @@
 \usepackage{subfigure}
 \usepackage{tabularx}
 \usepackage{url}
-% \usepackage[sort&compress,numbers]{natbib}
-\usepackage[boxed,linesnumbered,algochapter]{algorithm2e}	
+%% Hyperref
+\usepackage[breaklinks,colorlinks,citecolor=red,urlcolor=blue,bookmarks=false,hypertexnames=true]{hyperref}
+% 如需要书签，bookmarks的值改为true
+
+\usepackage[boxed,linesnumbered,algochapter]{algorithm2e}
 \usepackage[sort&compress]{gbt7714}
 
 \usepackage{fontspec}
 \setmainfont{Times New Roman}
+\setmonofont{Courier New}
 
 \begin{document}
 
@@ -40,8 +45,16 @@
 
 \input{format}
 \input{cover}
-\zihao{-4}
 
+% 定义中英文 正文行距
+\def\temp{English}
+\ifx\temp\preferlanguage
+  % English
+  \zihao{-4}\setlength{\baselineskip}{20bp}
+\else
+  % Chinese
+  \zihao{-4}\setlength{\baselineskip}{20bp}
+\fi
 
 \tableofcontents
 \thispagestyle{empty}
