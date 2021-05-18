@@ -1,10 +1,14 @@
-.PHONY: clean FORCE_MAKE
+.PHONY: clean report test FORCE_MAKE
 
-main.pdf: main.tex FORCE_MAKE
-	xelatex main.tex
-	bibtex main.aux
-	xelatex main.tex
-	xelatex main.tex
+REPORT  = main
+
+report: $(REPORT).pdf
+
+$(REPORT).pdf: FORCE_MAKE
+	xelatex $(REPORT)
+	bibtex $(REPORT)
+	xelatex $(REPORT)
+	xelatex $(REPORT)
 clean:
 	rm -f *.aux
 	rm -f *.log
