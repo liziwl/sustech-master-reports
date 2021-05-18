@@ -28,7 +28,17 @@
   \renewcommand{\tablename}{Table}
   \renewcommand\thesubfigure{(\alph{subfigure})}
   \CTEXoptions[bibname={Reference}]
+  \newtheorem{definition}{Definition}
+  \newtheorem{example}{Example}
+  \newtheorem{algo}{Algorithm}
   \newtheorem{theorem}{Theorem}
+  \newtheorem{axiom}{Axiom}
+  \newtheorem{proposition}{Proposition}
+  \newtheorem{lemma}{Lemma}
+  \newtheorem{corollary}{Corollary}
+  \newtheorem{remark}{Remark}
+  \renewcommand{\proofname}{\bf Proof}
+  \renewcommand{\qedsymbol}{$\blacksquare$} % 证毕符号改成黑色的正方形
 \else
   % Chinese
   \CTEXoptions[bibname={主要参考文献}]
