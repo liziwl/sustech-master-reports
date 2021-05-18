@@ -55,7 +55,7 @@
 %     {\if@fancyplain\let\headrulewidth\plainheadrulewidth\fi
 %      \makeheadrule}}
 % \makeatother
-		
+
 \pagestyle{fancyplain}
 \renewcommand{\chaptermark}[1]{\relax}
 \renewcommand{\sectionmark}[1]{\markright{#1}}
@@ -134,6 +134,19 @@
 }
 \fi
 
+\def\temp{Proposal}
+\ifx\temp\baogao
+\def\report@name@en{Thesis Proposal of Master Candidate}
+\def\report@name{硕士学位论文开题报告}
+\def\date@name@en{Defense Date}
+\def\date@name{开题报告日期}
+\else
+\def\report@name@en{Study Progress Report of Master's Students}
+\def\report@name{硕士研究生年度考核报告}
+\def\date@name@en{Submission Date}
+\def\date@name{年度考核日期}
+\fi
+
 \ifxueweimaster
 \def\makecover{
   \def\temp{English}
@@ -143,9 +156,9 @@
     \zihao{-2}\vspace*{10mm}
 		\renewcommand{\CJKglue}{\hskip 2pt plus 0.08\baselineskip}
     \centerline{\zihao{2}\textbf{SUSTech}}
-		
+
 		\vspace{10mm}
-		\centerline{\zihao{2}\textbf{Thesis Proposal of Master Candidates}}
+		\centerline{\zihao{2}\textbf{\report@name@en}}
 
 		\renewcommand{\CJKglue}{\hskip 0pt plus 0.08\baselineskip}
 \vspace{30pt}
@@ -163,7 +176,7 @@
 	\@cosupervisor
     \textbf{Graduate}      & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\@author}\\
     \textbf{Student Number}  & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\@stuno}\\
-    \textbf{Defense Date} & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\@date}\\
+    \textbf{\date@name@en} & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\@date}\\
     \end{tabular}
 		\renewcommand{\arraystretch}{1}}
 	\vfill
@@ -175,9 +188,9 @@
     \zihao{-2}\vspace*{10mm}
 		\renewcommand{\CJKglue}{\hskip 2pt plus 0.08\baselineskip}
     \centerline{\kaishu\textbf{南方科技大学}}
-		
+
 		\vspace{10mm}
-		\centerline{\zihao{2}\songti\textbf{硕士学位论文开题报告}}
+		\centerline{\zihao{2}\songti\textbf{\report@name}}
 
 		\renewcommand{\CJKglue}{\hskip 0pt plus 0.08\baselineskip}
 \vspace{30pt}
@@ -195,7 +208,7 @@
 	\@cosupervisor
     \textbf{研\hfill 究\hfill 生}      & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\@author}\\
     \textbf{学\hfill 号}  & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\@stuno}\\
-    \textbf{开题报告日期} & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\@date}\\
+    \textbf{\date@name} & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\@date}\\
     \end{tabular}
 		\renewcommand{\arraystretch}{1}}
 	\vfill

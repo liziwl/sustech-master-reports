@@ -1,6 +1,6 @@
-# Master-FirstReport-Latex
+# sustech-master-reports
 
-南方科技大学硕士开题报告 （中/英）
+南方科技大学硕士开题报告、年度考核报告 （中/英）
 
 Thanks [Peng-YM](https://github.com/Peng-YM) for adapting the English template as required.
 
@@ -11,6 +11,12 @@ Thanks [Peng-YM](https://github.com/Peng-YM) for adapting the English template a
 [预览 中文模板 PDF](./main-cn.pdf)
 
 [View English template](./main-en.pdf)
+
+## 模版架构
+
+- `main.tex`：定义文档结构：中英文设置，开题/考核报告选项
+- `cover.tex`：定义一些封面的元数据，作者，标题，等
+- `format.tex`：定义样式
 
 ## 编译环境
 

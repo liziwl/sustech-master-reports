@@ -1,6 +1,6 @@
-.PHONY:clean
+.PHONY: clean FORCE_MAKE
 
-main.pdf: main.tex
+main.pdf: main.tex FORCE_MAKE
 	xelatex main.tex
 	bibtex main.aux
 	xelatex main.tex
