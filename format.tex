@@ -28,6 +28,7 @@
   \renewcommand{\tablename}{Table}
   \renewcommand\thesubfigure{(\alph{subfigure})}
   \CTEXoptions[bibname={Reference}]
+  \newtheorem{theorem}{Theorem}
 \else
   % Chinese
   \CTEXoptions[bibname={主要参考文献}]
@@ -45,20 +46,17 @@
   \def\subparagraphautorefname{子段落}%
   \def\FancyVerbLineautorefname{行}%
   \def\theoremautorefname{定理}%
-  % \theoremstyle{plain}
-  % \theorembodyfont{\songti\rmfamily}
-  % \theoremheaderfont{\heiti\rmfamily}
-  % \newtheorem{definition}{\heiti 定义}
-  % \newtheorem{example}{\heiti 例}
-  % \newtheorem{algo}{\heiti 算法}
-  % \newtheorem{theorem}{\heiti 定理}
-  % \newtheorem{axiom}{\heiti 公理}
-  % \newtheorem{proposition}{\heiti 命题}
-  % \newtheorem{lemma}{\heiti 引理}
-  % \newtheorem{corollary}{\heiti 推论}
-  % \newtheorem{remark}{\heiti 注解}
-  % \newenvironment{proof}{\noindent{\heiti 证明：}}{\hfill $ \square $ \vskip 4mm}
-  % \theoremsymbol{$\square$}
+  \newtheorem{definition}{\indent \heiti 定义}
+  \newtheorem{example}{\indent \heiti 例}
+  \newtheorem{algo}{\indent \heiti 算法}
+  \newtheorem{theorem}{\indent \heiti 定理}
+  \newtheorem{axiom}{\indent \heiti 公理}
+  \newtheorem{proposition}{\indent \heiti 命题}
+  \newtheorem{lemma}{\indent \heiti 引理}
+  \newtheorem{corollary}{\indent \heiti 推论}
+  \newtheorem{remark}{\indent \heiti 注解}
+  \renewcommand{\proofname}{\indent \heiti 证明}
+  \renewcommand{\qedsymbol}{$\blacksquare$} % 证毕符号改成黑色的正方形
 \fi
 
 % 定义页眉和页脚 使用fancyhdr 宏包

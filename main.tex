@@ -1,7 +1,7 @@
 % !Mode:: "TeX:UTF-8"
 
 \def\xuewei{Master} % 定义学位 Doctor or Master，目前仅测试了 Master。
-% \def\preferlanguage{English} % 设置当前语言，如使用中文注释本行
+\def\preferlanguage{English} % 设置当前语言，如使用中文注释本行
 \def\baogao{Progress} % 定义报告类型 Proposal（开题） or Progress （年度报告）
 
 \documentclass[cs4size,openany,UTF8]{ctexbook}
@@ -9,13 +9,15 @@
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{caption}
+\usepackage{amsthm}
 \usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
 \usepackage{txfonts}
 \usepackage{bm}
 \usepackage{graphicx}
 \usepackage{enumitem}
 \usepackage{fancyhdr}
-\usepackage{ntheorem}
 \usepackage{titlesec}
 \usepackage{subfigure}
 \usepackage{tabularx}
@@ -68,6 +70,7 @@
 \input{body/chapterThree}
 \input{body/chapterFour}
 \input{body/chapterFive}
+\input{body/chapterTest.tex}
 
 \newpage
 
