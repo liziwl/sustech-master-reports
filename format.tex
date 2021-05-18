@@ -20,6 +20,17 @@
 \renewcommand\thesection{\@arabic \c@section} % 前面不带 thechapter
 \makeatother
 
+\newif\ifxueweidoctor
+\newif\ifxueweimaster
+\def\temp{Doctor}
+\ifx\temp\xuewei
+  \xueweidoctortrue  \xueweimasterfalse
+\fi
+\def\temp{Master}
+\ifx\temp\xuewei
+  \xueweidoctorfalse  \xueweimastertrue
+\fi
+
 \def\temp{English}
 \ifx\temp\preferlanguage
   % English

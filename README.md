@@ -6,7 +6,7 @@ Thanks [Peng-YM](https://github.com/Peng-YM) for adapting the English template a
 
 本模板仅验证了硕士研究生的模板与官方一致，博士研究生的选项尚无验证。
 
-## 预览
+## 预览（不为最新版）
 
 [预览 中文模板 PDF](./main-cn.pdf)
 
