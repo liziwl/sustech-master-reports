@@ -24,6 +24,7 @@ jobs:
         with:
           run: |
             apk add make
+            apk --no-cache add msttcorefonts-installer fontconfig && update-ms-fonts && fc-cache -f
             make all
             make clean
 
