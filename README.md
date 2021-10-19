@@ -1,5 +1,9 @@
 # sustech-master-reports
 
+[![Actions Status](https://github.com/liziwl/sustech-master-reports/actions/workflows/verify-compile.yml/badge.svg)](https://github.com/liziwl/sustech-master-reports/actions/workflows/verify-compile.yml)
+[![GitHub downloads](https://img.shields.io/github/downloads/liziwl/sustech-master-reports/total)](https://github.com/liziwl/sustech-master-reports/releases)
+[![GitHub pre-release](https://img.shields.io/github/v/release/liziwl/sustech-master-reports?include_prereleases&label=%E5%BC%80%E5%8F%91%E7%89%88-%E9%A2%84%E6%9E%84%E5%BB%BA)](https://github.com/liziwl/sustech-master-reports/releases/tag/dev-latest)
+
 南方科技大学硕士开题报告、年度考核报告 （中/英）
 
 Thanks [Peng-YM](https://github.com/Peng-YM) for adapting the English template as required.
