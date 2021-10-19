@@ -24,6 +24,7 @@ jobs:
         with:
           run: |
             apk add make
+            make all
             make clean
 
       - name: Archive Release

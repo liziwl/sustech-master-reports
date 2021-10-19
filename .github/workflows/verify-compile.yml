@@ -14,7 +14,7 @@ jobs:
         with:
           run: |
             apk add make
-            make test
+            make all
 
       - name: Publish PDF as actions assets
         uses: actions/upload-artifact@v2
