@@ -1,0 +1,65 @@
+env: {}
+
+# FILE GENERATED WITH: npx ghat fregante/ghatemplates/action-release
+# SOURCE: https://github.com/fregante/ghatemplates
+
+name: Release
+
+on:
+  push:
+    branches:
+      - "master"
+    tags:
+      - v*
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Compile LaTeX document
+        uses: xu-cheng/texlive-action/full@v1
+        with:
+          run: |
+            apk add make
+            make clean
+
+      - name: Archive Release
+        uses: thedoctor0/zip-release@master
+        with:
+          filename: 'sustech-master-reports-dev-build.zip'
+          exclusions: '*.git* /*node_modules/* .editorconfig'
+
+      - name: Upload release artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: 'sustech-master-reports-dev-build'
+          path: 'sustech-master-reports-dev-build.zip'
+
+      - name: Upload Pre-release artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: 'pre-release-artifacts_action_build'
+          path: |
+            main.pdf
+
+  pre-release:
+    name: "Pre Release"
+    runs-on: "ubuntu-latest"
+    needs: build_latex
+    if: always() && github.event_name == 'push'
+    steps:
+      - uses: actions/download-artifact@v2
+        name: Download artifact
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        name: Auto pre-release
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "dev-latest"
+          prerelease: true
+          title: "Dev Build（预发布）"
+          files: |
+            pre-release-artifacts_action_build/main.pdf
+            sustech-master-reports-dev-build/sustech-master-reports-dev-build.zip
