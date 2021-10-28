@@ -13,12 +13,6 @@ Thanks [Peng-YM](https://github.com/Peng-YM) for adapting the English template a
 
 - **[开发版-预构建（点此）](https://github.com/liziwl/sustech-master-reports/releases/tag/dev-latest)**
 
-## 预览（不为最新版）
-
-[预览 中文模板 PDF](./main-cn.pdf)
-
-[View English template](./main-en.pdf)
-
 ## 模版架构
 
 - `main-example.tex`：定义文档结构：中英文设置，开题/考核报告选项
