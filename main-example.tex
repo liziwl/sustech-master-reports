@@ -1,6 +1,6 @@
 % !Mode:: "TeX:UTF-8"
 % !TEX program  = xelatex
-\documentclass[degree=master,language=english,type=progress]{sustech-gs-report}
+\documentclass[degree=master,language=chinese,type=progress]{sustech-gs-report}
 
 \input{config.tex}
 
@@ -8,6 +8,20 @@
 
 \makecover
 
-asdasdawsd
+\frontmatter
+\tableofcontents
+
+\mainmatter
+\input{body/chapterOne}
+\input{body/chapterTwo}
+\input{body/chapterThree}
+\input{body/chapterFour}
+\input{body/chapterFive}
+\input{body/chapterTest.tex}
+
+\backmatter
+
+\bibliographystyle{gbt7714-numerical}
+\bibliography{reference}
 
 \end{document}

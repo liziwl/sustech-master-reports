@@ -91,6 +91,7 @@
 \fi
 
 \newcommand\makecover{%
+  \pagenumbering{Roman}%
   \ifsustech@master
     \ifsustech@chinese
       % Chinese
@@ -154,6 +155,7 @@
     \fi
   \fi
   \clearpage
+  \setcounter{page}{1}
 }
 
 
@@ -172,11 +174,139 @@
 \define@key{sustech}{affil}{\def\sustech@affil{#1}}
 \define@key{sustech}{subject}{\def\sustech@subject{#1}}
 
-% 定义中英文 正文行距
 \ifsustech@english
   % English
-  \zihao{-4}\setlength{\baselineskip}{20bp}
+  \renewcommand{\contentsname}{Table of Contents}
+  \renewcommand{\figurename}{Fig.}
+  \renewcommand{\tablename}{Table}
+  \renewcommand\thesubfigure{(\alph{subfigure})}
+  \CTEXoptions[bibname={Reference}]
+  \newtheorem{definition}{Definition}
+  \newtheorem{example}{Example}
+  \newtheorem{algo}{Algorithm}
+  \newtheorem{theorem}{Theorem}
+  \newtheorem{axiom}{Axiom}
+  \newtheorem{proposition}{Proposition}
+  \newtheorem{lemma}{Lemma}
+  \newtheorem{corollary}{Corollary}
+  \newtheorem{remark}{Remark}
+  \renewcommand{\proofname}{\bf Proof}
+  \renewcommand{\qedsymbol}{$\blacksquare$} % 证毕符号改成黑色的正方形
 \else
   % Chinese
-  \zihao{-4}\setlength{\baselineskip}{20bp}
+  \CTEXoptions[bibname={主要参考文献}]
+  \def\equationautorefname{式}%
+  \def\footnoteautorefname{脚注}%
+  \def\itemautorefname{项}%
+  \def\figureautorefname{图}%
+  \def\tableautorefname{表}%
+  \def\partautorefname{篇}%
+  \def\appendixautorefname{附录}%
+  \def\chapterautorefname{章}%
+  \def\sectionautorefname{节}%
+  \def\subsectionautorefname{小小节}%
+  \def\paragraphautorefname{段落}%
+  \def\subparagraphautorefname{子段落}%
+  \def\FancyVerbLineautorefname{行}%
+  \def\theoremautorefname{定理}%
+  \newtheorem{definition}{\indent \heiti 定义}
+  \newtheorem{example}{\indent \heiti 例}
+  \newtheorem{algo}{\indent \heiti 算法}
+  \newtheorem{theorem}{\indent \heiti 定理}
+  \newtheorem{axiom}{\indent \heiti 公理}
+  \newtheorem{proposition}{\indent \heiti 命题}
+  \newtheorem{lemma}{\indent \heiti 引理}
+  \newtheorem{corollary}{\indent \heiti 推论}
+  \newtheorem{remark}{\indent \heiti 注解}
+  \renewcommand{\proofname}{\indent \heiti 证明}
+  \renewcommand{\qedsymbol}{$\blacksquare$} % 证毕符号改成黑色的正方形
 \fi
+
+% 减少 ref item 之间的行间距
+\addtolength{\bibsep}{-0.8em}
+
+\setlength{\subfigbottomskip}{0pt}
+\CTEXsetup[name={,},number={}]{chapter}
+\captionsetup{labelsep=space,font=small,justification=centering}
+\arraycolsep=1.7pt
+\graphicspath{{figures/}}
+\renewcommand{\subcapsize}{\zihao{5}}
+\renewcommand{\thesubfigure}{\alph{subfigure})}
+\setcounter{secnumdepth}{4}
+\newcommand{\pozhehao}{\raisebox{0.1em}{------}}
+\titleformat{\chapter}{\center\zihao{-2}\heiti}{\chaptertitlename}{0.5em}{}
+\titlespacing{\chapter}{0pt}{-4.5mm}{8mm}
+\titleformat{\section}{\zihao{-3}\heiti}{\thesection}{0.5em}{}
+\titlespacing{\section}{0pt}{4.5mm}{4.5mm}
+\titleformat{\subsection}{\zihao{4}\heiti}{\thesubsection}{0.5em}{}
+\titlespacing{\subsection}{0pt}{4mm}{4mm}
+\titleformat{\subsubsection}{\zihao{-4}\heiti}{\thesubsubsection}{0.5em}{}
+\titlespacing{\subsubsection}{0pt}{0pt}{0pt}
+\renewcommand\thesection{\@arabic \c@section} % 前面不带 thechapter
+
+
+\renewcommand{\CJKglue}{\hskip 0.56pt plus 0.08\baselineskip} %加大字间距，使每行33个字
+\def\defaultfont{\renewcommand{\baselinestretch}{1.62}\normalsize\selectfont}
+% 调整罗列环境的布局
+\setitemize{leftmargin=3em,itemsep=0em,partopsep=0em,parsep=0em,topsep=-0em}
+\setenumerate{leftmargin=3em,itemsep=0em,partopsep=0em,parsep=0em,topsep=0em}
+\renewcommand{\theequation}{\arabic{equation}}
+\renewcommand{\thetable}{\arabic{table}}
+\renewcommand{\thefigure}{\arabic{figure}}
+\renewcommand{\p@subfigure}{\thefigure~}
+
+
+% 定义页眉和页脚 使用fancyhdr 宏包
+\pagestyle{fancyplain}
+\renewcommand{\chaptermark}[1]{\relax}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\ifsustech@master
+  % \fancyhead[C]{\songti \zihao{-5} 南方科技大学硕士学位论文开题报告}
+  \fancyfoot[C]{\zihao{-5} -~\thepage~-}
+	% \renewcommand\bibsection{\section*{\centerline{\bibname}}
+	% \markboth{南方科技大学硕士学位论文开题报告}{\bibname}}
+\else
+  % \fancyhead[CO]{\songti \zihao{-5}\rightmark}
+  % \fancyhead[CE]{\songti \zihao{-5} 南方科技大学博士学位论文开题报告}%
+  \fancyfoot[C]{\zihao{-5} -~\thepage~-}
+	% \renewcommand\bibsection{\section*{\centerline{\bibname}}
+	% \markboth{南方科技大学博士学位论文开题报告}{\bibname}}
+\fi
+
+\newcommand{\sustech@fontset}{
+  \ifsustech@english
+    % English
+    \zihao{-4}\setlength{\baselineskip}{20bp}
+  \else
+    % Chinese
+    \zihao{-4}\setlength{\baselineskip}{20bp}
+  \fi
+}
+
+\renewcommand\frontmatter{%
+  % \cleardoublepage
+  % \@mainmatterfalse
+  \sustech@fontset
+  \pagenumbering{Roman}%
+}
+
+\newcommand{\sustech@mainpageset}{
+  \thispagestyle{empty}
+  \clearpage{\pagestyle{empty}}
+  \setcounter{page}{1}
+}
+
+\renewcommand\mainmatter{%
+  \sustech@mainpageset
+  % \cleardoublepage
+  % \@mainmattertrue
+  \sustech@fontset
+  \pagenumbering{arabic}%
+}
+
+\renewcommand\backmatter{%
+  \clearpage
+  % \@mainmatterfalse
+}
