@@ -21,14 +21,14 @@ Thanks [Peng-YM](https://github.com/Peng-YM) for adapting the English template a
 
 ## 模版架构
 
-- `main.tex`：定义文档结构：中英文设置，开题/考核报告选项
-- `cover.tex`：定义一些封面的元数据，作者，标题，等
-- `format.tex`：定义样式
+- `main-example.tex`：定义文档结构：中英文设置，开题/考核报告选项
+- `config.tex`：定义一些封面的元数据，作者，标题，等
+- `sustech-gs-report.cls`：定义样式
 
 ## 编译环境
 
-* xelatex
-  * 通过 overleaf 和 Windows 下编译
+* XeLaTeX
+  * 通过 Overleaf 和 Windows 下编译
 
 ## Windows 使用
 
@@ -36,5 +36,7 @@ Thanks [Peng-YM](https://github.com/Peng-YM) for adapting the English template a
 
 ## Unix 使用
 
-* Arch 发行版安装 `ttf-ms-fonts` (Times New Roman等字体) 、Ubuntu 上请自行搜索
+* 安装微软字体 (Times New Roman等字体)
+  * Arch：安装 `yay -S ttf-ms-fonts`
+  * Ubuntu / Debian：`sudo apt install ttf-mscorefonts-installer`
 * Makefile
