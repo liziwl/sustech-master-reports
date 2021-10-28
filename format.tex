@@ -169,9 +169,9 @@
 
 \def\temp{Proposal}
 \ifx\temp\baogao
-\def\report@name@en{Thesis Proposal of Master Candidate}
+\def\report@name@en{Master's Thesis Proposal}
 \def\report@name{硕士学位论文开题报告}
-\def\date@name@en{Defense Date}
+\def\date@name@en{Date of Proposal Report}
 \def\date@name{开题报告日期}
 \else
 \def\report@name@en{Study Progress Report of Master's Students}
@@ -188,7 +188,7 @@
     \thispagestyle{empty}
     \zihao{-2}\vspace*{10mm}
 		\renewcommand{\CJKglue}{\hskip 2pt plus 0.08\baselineskip}
-    \centerline{\zihao{2}\textbf{SUSTech}}
+    \centerline{\zihao{2}\textbf{Southern University of Science and Technology}}
 
 		\vspace{10mm}
 		\centerline{\zihao{2}\textbf{\report@name@en}}
@@ -202,12 +202,12 @@
     \hspace*{30pt}{\songti
 	\renewcommand{\arraystretch}{1.3}
     \begin{tabular}{l@{}l}
-    \textbf{School (Department)}   & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\@affil}\\
+    \textbf{Department}   & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\@affil}\\
     \textbf{Discipline}     & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\@subject}\\
     \textbf{Supervisor}     & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\@supervisor}\\
     \@assosupervisor
 	\@cosupervisor
-    \textbf{Graduate}      & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\@author}\\
+    \textbf{Student Name}      & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\@author}\\
     \textbf{Student Number}  & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\@stuno}\\
     \textbf{\date@name@en} & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\@date}\\
     \end{tabular}
