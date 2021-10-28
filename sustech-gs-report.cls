@@ -232,6 +232,7 @@
 % 减少 ref item 之间的行间距
 \addtolength{\bibsep}{-0.8em}
 
+% 导入原来各种精细化配置
 \setlength{\subfigbottomskip}{0pt}
 \CTEXsetup[name={,},number={}]{chapter}
 \captionsetup{labelsep=space,font=small,justification=centering}
