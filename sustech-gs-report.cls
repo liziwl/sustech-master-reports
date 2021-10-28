@@ -79,80 +79,87 @@
 \setmonofont{Courier New}
 
 \ifsustech@proposal
-  \def\report@name@en{Master's Thesis Proposal}
-  \def\report@name{硕士学位论文开题报告}
+  \ifsustech@master
+    \def\report@name@en{Master's Thesis Proposal}
+    \def\report@name{硕士学位论文开题报告}
+  \else
+    \def\report@name@en{Doctor's Thesis Proposal}
+    \def\report@name{博士学位论文开题报告}
+  \fi
   \def\date@name@en{Date of Proposal Report}
   \def\date@name{开题报告日期}
 \else
-  \def\report@name@en{Study Progress Report of Master's Students}
-  \def\report@name{硕士研究生年度考核报告}
+  \ifsustech@master
+    \def\report@name@en{Study Progress Report of Master's Students}
+    \def\report@name{硕士研究生年度考核报告}
+  \else
+    \def\report@name@en{Study Progress Report of Doctor's Students}
+    \def\report@name{博士研究生年度考核报告}
+  \fi
   \def\date@name@en{Submission Date}
   \def\date@name{年度考核日期}
 \fi
 
 \newcommand\makecover{%
   \pagenumbering{Roman}%
-  \ifsustech@master
-    \ifsustech@chinese
-      % Chinese
-      \thispagestyle{empty}
-      \zihao{-2}\vspace*{10mm}
-      \renewcommand{\CJKglue}{\hskip 2pt plus 0.08\baselineskip}
-      \centerline{\kaishu\textbf{南方科技大学}}
+  \ifsustech@chinese
+    % Chinese
+    \thispagestyle{empty}
+    \zihao{-2}\vspace*{10mm}
+    \renewcommand{\CJKglue}{\hskip 2pt plus 0.08\baselineskip}
+    \centerline{\kaishu\textbf{南方科技大学}}
 
-      \vspace{10mm}
-      \centerline{\zihao{2}\songti\textbf{\report@name}}
+    \vspace{10mm}
+    \centerline{\zihao{2}\songti\textbf{\report@name}}
 
-      \renewcommand{\CJKglue}{\hskip 0pt plus 0.08\baselineskip}
-      \vspace{30pt}
-      \zihao{-2}
-      \begin{center}\songti\textbf{题~目：\sustech@title}\end{center}
-      \vspace{30pt}
-      \zihao{3}
-      \hspace*{68pt}{\songti
-      \renewcommand{\arraystretch}{1.3}
-      \begin{tabular}{l@{}l}
-      \textbf{院\hfill （系）}   & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@affil}\\
-      \textbf{学\hfill 科}     & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@subject}\\
-      \textbf{导\hfill 师}     & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@supervisor}\\
-      \textbf{研\hfill 究\hfill 生}      & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@author}\\
-      \textbf{学\hfill 号}  & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@stuno}\\
-      \textbf{\date@name} & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@date}\\
-      \end{tabular}
-      \renewcommand{\arraystretch}{1}}
-      \vfill
-      \centerline{\songti\textbf{研究生院制}}
-    \else%
-      % English
-      \thispagestyle{empty}
-      \zihao{-2}\vspace*{10mm}
-      \renewcommand{\CJKglue}{\hskip 2pt plus 0.08\baselineskip}
-      \centerline{\zihao{2}\textbf{Southern University of Science and Technology}}
+    \renewcommand{\CJKglue}{\hskip 0pt plus 0.08\baselineskip}
+    \vspace{30pt}
+    \zihao{-2}
+    \begin{center}\songti\textbf{题~目：\sustech@title}\end{center}
+    \vspace{30pt}
+    \zihao{3}
+    \hspace*{68pt}{\songti
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{l@{}l}
+    \textbf{院\hfill （系）}   & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@affil}\\
+    \textbf{学\hfill 科}     & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@subject}\\
+    \textbf{导\hfill 师}     & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@supervisor}\\
+    \textbf{研\hfill 究\hfill 生}      & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@author}\\
+    \textbf{学\hfill 号}  & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@stuno}\\
+    \textbf{\date@name} & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@date}\\
+    \end{tabular}
+    \renewcommand{\arraystretch}{1}}
+    \vfill
+    \centerline{\songti\textbf{研究生院制}}
+  \else%
+    % English
+    \thispagestyle{empty}
+    \zihao{-2}\vspace*{10mm}
+    \renewcommand{\CJKglue}{\hskip 2pt plus 0.08\baselineskip}
+    \centerline{\zihao{2}\textbf{Southern University of Science and Technology}}
 
-      \vspace{10mm}
-      \centerline{\zihao{2}\textbf{\report@name@en}}
+    \vspace{10mm}
+    \centerline{\zihao{2}\textbf{\report@name@en}}
 
-      \renewcommand{\CJKglue}{\hskip 0pt plus 0.08\baselineskip}
-      \vspace{30pt}
-      \zihao{-2}
-      \begin{center}\textbf{Title：\sustech@title}\end{center}
-      \vspace{30pt}
-      \zihao{3}
-      \hspace*{30pt}{\songti
-      \renewcommand{\arraystretch}{1.3}
-      \begin{tabular}{l@{}l}
-      \textbf{Department}   & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@affil}\\
-      \textbf{Discipline}     & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@subject}\\
-      \textbf{Supervisor}     & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@supervisor}\\
-      \textbf{Student Name}      & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@author}\\
-      \textbf{Student Number}  & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@stuno}\\
-      \textbf{\date@name@en} & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@date}\\
-      \end{tabular}
-      \renewcommand{\arraystretch}{1}}
-      \vfill
-      \centerline{\songti\textbf{Graduate School}}
-
-    \fi
+    \renewcommand{\CJKglue}{\hskip 0pt plus 0.08\baselineskip}
+    \vspace{30pt}
+    \zihao{-2}
+    \begin{center}\textbf{Title：\sustech@title}\end{center}
+    \vspace{30pt}
+    \zihao{3}
+    \hspace*{30pt}{\songti
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{l@{}l}
+    \textbf{Department}   & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@affil}\\
+    \textbf{Discipline}     & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@subject}\\
+    \textbf{Supervisor}     & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@supervisor}\\
+    \textbf{Student Name}      & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@author}\\
+    \textbf{Student Number}  & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@stuno}\\
+    \textbf{\date@name@en} & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@date}\\
+    \end{tabular}
+    \renewcommand{\arraystretch}{1}}
+    \vfill
+    \centerline{\songti\textbf{Graduate School}}
   \fi
   \clearpage
   \setcounter{page}{1}
