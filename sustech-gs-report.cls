@@ -1,0 +1,182 @@
+%% Copyright (C) 2020-2021 by Ziqiang Li <leezisy AT gmail.com>
+%%
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3c
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%    https://www.latex-project.org/lppl.txt
+%% and version 1.3c or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%%
+\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+\ProvidesClass{sustech-gs-report}
+  [2019/12/08 v1.0 SUSTech Thesis Template]
+\RequirePackage{ifxetex,ifluatex,ifthen}
+  \ifthenelse{\boolean{xetex}\OR\boolean{luatex}}{}{
+    \ClassError{sustech-gs-report}{You Should Use XeLaTeX or LuaLaTeX To Compile.}}
+
+\hyphenation{SUSTech-gs-report}
+\newcommand{\sustechgsreport}{sustech-gs-report}
+\newcommand{\version}{1.0}
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+  family=sustech,
+  prefix=sustech@,
+  setkeys=\kvsetkeys}
+\DeclareStringOption[master]{degree}[master]
+\DeclareStringOption[chinese]{language}[chinese]
+\DeclareStringOption[proposal]{type}[proposal]
+\DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{ctexbook}}
+\ProcessKeyvalOptions*
+\newcommand\sustech@validate@key[1]{%
+  \@ifundefined{sustech@\csname sustech@#1\endcsname true}{%
+    \ClassError{\sustechgsreport}{Invalid value '\csname sustech@#1\endcsname'}{}%
+  }{%
+    \csname sustech@\csname sustech@#1\endcsname true\endcsname
+  }%
+}
+\newif\ifsustech@master
+\newif\ifsustech@doctor
+\sustech@validate@key{degree}
+
+\newif\ifsustech@chinese
+\newif\ifsustech@english
+\sustech@validate@key{language}
+
+\newif\ifsustech@proposal
+\newif\ifsustech@progress
+\sustech@validate@key{type}
+
+
+\LoadClass[cs4size,openany,UTF8,AutoFakeBold = {3.17}]{ctexbook}
+
+\RequirePackage[a4paper,text={160true mm,234true mm},top=30.5true mm,left=25true mm,head=5true mm,headsep=2.5true mm,foot=8.5true mm]{geometry}
+\RequirePackage{booktabs}
+\RequirePackage{longtable}
+\RequirePackage{caption}
+\RequirePackage{amsthm}
+\RequirePackage{amsmath}
+\RequirePackage{amsfonts}
+\RequirePackage{amssymb}
+\RequirePackage{txfonts}
+\RequirePackage{bm}
+\RequirePackage{graphicx}
+\RequirePackage{enumitem}
+\RequirePackage{fancyhdr}
+\RequirePackage{titlesec}
+\RequirePackage{subfigure}
+\RequirePackage{tabularx}
+\RequirePackage{url}
+%% Hyperref
+\RequirePackage[breaklinks,hidelinks,hypertexnames=true,bookmarks=true,bookmarksopen=true,bookmarksnumbered=true]{hyperref}
+% 如不需要PDF书签（目录），bookmarks的值改为 false
+
+\RequirePackage[boxed,linesnumbered,algochapter]{algorithm2e}
+\RequirePackage[sort&compress]{gbt7714}
+
+\RequirePackage{fontspec}
+\setmainfont{Times New Roman}
+\setmonofont{Courier New}
+
+\ifsustech@proposal
+  \def\report@name@en{Master's Thesis Proposal}
+  \def\report@name{硕士学位论文开题报告}
+  \def\date@name@en{Date of Proposal Report}
+  \def\date@name{开题报告日期}
+\else
+  \def\report@name@en{Study Progress Report of Master's Students}
+  \def\report@name{硕士研究生年度考核报告}
+  \def\date@name@en{Submission Date}
+  \def\date@name{年度考核日期}
+\fi
+
+\newcommand\makecover{%
+  \ifsustech@master
+    \ifsustech@chinese
+      % Chinese
+      \thispagestyle{empty}
+      \zihao{-2}\vspace*{10mm}
+      \renewcommand{\CJKglue}{\hskip 2pt plus 0.08\baselineskip}
+      \centerline{\kaishu\textbf{南方科技大学}}
+
+      \vspace{10mm}
+      \centerline{\zihao{2}\songti\textbf{\report@name}}
+
+      \renewcommand{\CJKglue}{\hskip 0pt plus 0.08\baselineskip}
+      \vspace{30pt}
+      \zihao{-2}
+      \begin{center}\songti\textbf{题~目：\sustech@title}\end{center}
+      \vspace{30pt}
+      \zihao{3}
+      \hspace*{68pt}{\songti
+      \renewcommand{\arraystretch}{1.3}
+      \begin{tabular}{l@{}l}
+      \textbf{院\hfill （系）}   & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@affil}\\
+      \textbf{学\hfill 科}     & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@subject}\\
+      \textbf{导\hfill 师}     & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@supervisor}\\
+      \textbf{研\hfill 究\hfill 生}      & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@author}\\
+      \textbf{学\hfill 号}  & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@stuno}\\
+      \textbf{\date@name} & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@date}\\
+      \end{tabular}
+      \renewcommand{\arraystretch}{1}}
+      \vfill
+      \centerline{\songti\textbf{研究生院制}}
+    \else%
+      % English
+      \thispagestyle{empty}
+      \zihao{-2}\vspace*{10mm}
+      \renewcommand{\CJKglue}{\hskip 2pt plus 0.08\baselineskip}
+      \centerline{\zihao{2}\textbf{Southern University of Science and Technology}}
+
+      \vspace{10mm}
+      \centerline{\zihao{2}\textbf{\report@name@en}}
+
+      \renewcommand{\CJKglue}{\hskip 0pt plus 0.08\baselineskip}
+      \vspace{30pt}
+      \zihao{-2}
+      \begin{center}\textbf{Title：\sustech@title}\end{center}
+      \vspace{30pt}
+      \zihao{3}
+      \hspace*{30pt}{\songti
+      \renewcommand{\arraystretch}{1.3}
+      \begin{tabular}{l@{}l}
+      \textbf{Department}   & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@affil}\\
+      \textbf{Discipline}     & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@subject}\\
+      \textbf{Supervisor}     & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@supervisor}\\
+      \textbf{Student Name}      & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@author}\\
+      \textbf{Student Number}  & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@stuno}\\
+      \textbf{\date@name@en} & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@date}\\
+      \end{tabular}
+      \renewcommand{\arraystretch}{1}}
+      \vfill
+      \centerline{\songti\textbf{Graduate School}}
+
+    \fi
+  \fi
+  \clearpage
+}
+
+
+% kvvalue 定义个人信息选项
+\RequirePackage{xkeyval}
+\newcommand\reportsetup[1]{%
+  \setkeys{sustech}{#1}}
+
+\define@key{sustech}{title}{\def\sustech@title{#1}}
+\define@key{sustech}{titlesec}{\def\sustech@titlesec{#1}}
+\define@key{sustech}{author}{\def\sustech@author{#1}}
+\define@key{sustech}{stuno}{\def\sustech@stuno{#1}}
+\define@key{sustech}{supervisor}{\def\sustech@supervisor{#1}}
+\define@key{sustech}{date}{\def\sustech@date{#1}}
+\define@key{sustech}{bdate}{\def\sustech@bdate{#1}}
+\define@key{sustech}{affil}{\def\sustech@affil{#1}}
+\define@key{sustech}{subject}{\def\sustech@subject{#1}}
+
+% 定义中英文 正文行距
+\ifsustech@english
+  % English
+  \zihao{-4}\setlength{\baselineskip}{20bp}
+\else
+  % Chinese
+  \zihao{-4}\setlength{\baselineskip}{20bp}
+\fi
