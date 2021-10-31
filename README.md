@@ -22,11 +22,12 @@ Thanks [Peng-YM](https://github.com/Peng-YM) for adapting the English template a
 ## 编译环境
 
 * XeLaTeX
-  * 通过 Overleaf 和 Windows 下编译
+  * 通过 Overleaf 和 Windows / Mac 下编译
 
 ## Windows 使用
 
-* `make.bat` + `clean.bat`
+* 使用 `make.bat` + `clean.bat` 调用 `latexmk` 命令
+* 直接使用 `latexmk` 命令
 
 ## Unix 使用
 
