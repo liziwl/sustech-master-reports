@@ -172,12 +172,10 @@
   \setkeys{sustech}{#1}}
 
 \define@key{sustech}{title}{\def\sustech@title{#1}}
-\define@key{sustech}{titlesec}{\def\sustech@titlesec{#1}}
 \define@key{sustech}{author}{\def\sustech@author{#1}}
 \define@key{sustech}{stuno}{\def\sustech@stuno{#1}}
 \define@key{sustech}{supervisor}{\def\sustech@supervisor{#1}}
 \define@key{sustech}{date}{\def\sustech@date{#1}}
-\define@key{sustech}{bdate}{\def\sustech@bdate{#1}}
 \define@key{sustech}{affil}{\def\sustech@affil{#1}}
 \define@key{sustech}{subject}{\def\sustech@subject{#1}}
 
