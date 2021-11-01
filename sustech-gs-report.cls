@@ -48,7 +48,7 @@
 \sustech@validate@key{type}
 
 
-\LoadClass[cs4size,openany,UTF8,AutoFakeBold = {3.17}]{ctexbook}
+\LoadClass[openany,UTF8,zihao=-4,AutoFakeBold=3.17]{ctexbook}
 
 \RequirePackage[a4paper,text={160true mm,234true mm},top=30.5true mm,left=25true mm,head=5true mm,headsep=2.5true mm,foot=8.5true mm]{geometry}
 \RequirePackage{booktabs}
@@ -185,7 +185,7 @@
   \renewcommand{\figurename}{Fig.}
   \renewcommand{\tablename}{Table}
   \renewcommand\thesubfigure{(\alph{subfigure})}
-  \CTEXoptions[bibname={Reference}]
+  \ctexset{bibname={Reference}}
   \newtheorem{definition}{Definition}
   \newtheorem{example}{Example}
   \newtheorem{algo}{Algorithm}
@@ -199,7 +199,7 @@
   \renewcommand{\qedsymbol}{$\blacksquare$} % 证毕符号改成黑色的正方形
 \else
   % Chinese
-  \CTEXoptions[bibname={主要参考文献}]
+  \ctexset{bibname={主要参考文献}}
   \def\equationautorefname{式}%
   \def\footnoteautorefname{脚注}%
   \def\itemautorefname{项}%
@@ -232,7 +232,7 @@
 
 % 导入原来各种精细化配置
 \setlength{\subfigbottomskip}{0pt}
-\CTEXsetup[name={,},number={}]{chapter}
+\ctexset{chapter={name={,},number={}}}
 \captionsetup{labelsep=space,font=small,justification=centering}
 \arraycolsep=1.7pt
 \graphicspath{{figures/}}
