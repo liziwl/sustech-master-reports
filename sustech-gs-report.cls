@@ -26,6 +26,7 @@
 \DeclareStringOption[master]{degree}[master]
 \DeclareStringOption[chinese]{language}[chinese]
 \DeclareStringOption[proposal]{type}[proposal]
+\DeclareStringOption[none]{fontsets}[none]
 \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessKeyvalOptions*
 \newcommand\sustech@validate@key[1]{%
@@ -47,8 +48,11 @@
 \newif\ifsustech@progress
 \sustech@validate@key{type}
 
+\newif\ifsustech@external
+\newif\ifsustech@none
+\sustech@validate@key{fontsets}
 
-\LoadClass[openany,UTF8,zihao=-4,AutoFakeBold=3.17]{ctexbook}
+\LoadClass[openany,UTF8,zihao=-4]{ctexbook}
 
 \RequirePackage[a4paper,text={160true mm,234true mm},top=30.5true mm,left=25true mm,head=5true mm,headsep=2.5true mm,foot=8.5true mm]{geometry}
 \RequirePackage{booktabs}
@@ -316,3 +320,32 @@
   \clearpage
   % \@mainmatterfalse
 }
+
+\newcommand\load@cjk@font@none{
+  \xeCJKsetup{EmboldenFactor=3.17}%
+}
+
+\newcommand\load@cjk@font@external{%
+  \xeCJKsetup{EmboldenFactor=3.17}%
+  \setCJKmainfont[
+    AutoFakeBold = true,
+    Path = "fonts/",
+    ItalicFont   = SimKai.ttf,
+  ]{SimSun.ttc}%
+  \setCJKsansfont[Path = "fonts/",AutoFakeBold]{SimHei.ttf}%
+  \setCJKmonofont[Path = "fonts/",AutoFakeBold]{SimFang.ttf}%
+  \setCJKfamilyfont{zhsong}[Path = "fonts/",AutoFakeBold]{SimSun.ttc}%
+  \setCJKfamilyfont{zhhei}[Path = "fonts/",AutoFakeBold]{SimHei.ttf}%
+  \setCJKfamilyfont{zhkai}[Path = "fonts/",AutoFakeBold]{SimKai.ttf}%
+  \setCJKfamilyfont{zhfs}[Path = "fonts/",AutoFakeBold]{SimFang.ttf}%
+  \renewcommand\songti{\CJKfamily{zhsong}}
+  \renewcommand\heiti{\CJKfamily{zhhei}}
+  \renewcommand\kaishu{\CJKfamily{zhkai}}
+  \renewcommand\fangsong{\CJKfamily{zhfs}}
+}
+
+\ifsustech@external
+  \load@cjk@font@external
+\else
+  \load@cjk@font@none
+\fi
