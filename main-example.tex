@@ -1,0 +1,35 @@
+% !Mode:: "TeX:UTF-8"
+% !TEX program  = xelatex
+\documentclass[degree=master,language=chinese,type=proposal,fontsets=external]{sustech-gs-report}
+  % 学位 degree:
+  %   master （默认） | doctor
+  % 语言 language:
+  %   chinese （默认）| english
+  % 报告类型 type
+  %   proposal 开题报告（默认）| progress 年度考核报告
+  % 字体加载方式 fontsets
+  %   none 系统默认（默认）| external 包内字体
+
+\input{config.tex}
+
+\begin{document}
+
+\makecover
+
+\frontmatter
+\tableofcontents
+
+\mainmatter
+\input{body/chapterOne}
+\input{body/chapterTwo}
+\input{body/chapterThree}
+\input{body/chapterFour}
+\input{body/chapterFive}
+\input{body/chapterTest.tex}
+
+\backmatter
+
+\bibliographystyle{gbt7714-numerical}
+\bibliography{reference}
+
+\end{document}

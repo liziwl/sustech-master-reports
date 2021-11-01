@@ -1,1 +1,1 @@
-latexmk main
+latexmk main-example

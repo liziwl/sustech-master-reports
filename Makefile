@@ -1,7 +1,7 @@
 LATEXMK = latexmk
 SHELL  := /bin/bash
 
-REPORT  = main
+REPORT  = main-example
 
 # make deletion work on Windows
 ifdef SystemRoot
