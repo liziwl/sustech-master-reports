@@ -10,8 +10,13 @@ Thanks [Peng-YM](https://github.com/Peng-YM) for adapting the English template a
 本模板仅验证了硕士研究生的模板与官方一致，博士研究生的选项尚无验证。
 
 ## 下载
-
+### 新版
+该版本进行了大幅度修改，使用时请注意备份旧版文件，再更新。
 - **[开发版-预构建（点此）](https://github.com/liziwl/sustech-master-reports/releases/tag/dev-latest)**
+
+### 旧版
+大版本升级前的最后版本，包含2021年开题报告的修改。
+- **[v0.1.0（点此）](https://github.com/liziwl/sustech-master-reports/releases/tag/v0.1.0)**
 
 ## 模版架构
 
