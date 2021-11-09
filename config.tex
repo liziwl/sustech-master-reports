@@ -13,3 +13,17 @@
     affil = {Computer Science and Engineering}, % 院系名
     subject = {Computer science and Technology}, % 学科名
 }
+
+% 表格中支持跨行
+\usepackage{multirow}
+
+%% 参考文献使用 BibTeX + natbib 宏包
+%% 顺序编码制
+\usepackage[sort&compress]{gbt7714}
+\bibliographystyle{gbt7714-numerical}
+
+% 定义所有的图片文件在 figures 子目录下
+\graphicspath{{figures/}}
+
+\usepackage{ragged2e}
+\usepackage[boxed,linesnumbered,algochapter]{algorithm2e}

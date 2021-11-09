@@ -56,7 +56,6 @@
 
 \RequirePackage[a4paper,text={160true mm,234true mm},top=30.5true mm,left=25true mm,head=5true mm,headsep=2.5true mm,foot=8.5true mm]{geometry}
 \RequirePackage{booktabs}
-\RequirePackage{longtable}
 \RequirePackage{caption}
 \RequirePackage{amsthm}
 \RequirePackage{amsmath}
@@ -69,14 +68,13 @@
 \RequirePackage{fancyhdr}
 \RequirePackage{titlesec}
 \RequirePackage{subfigure}
-\RequirePackage{tabularx}
 \RequirePackage{url}
-%% Hyperref
+%% Hyperref，如不需要PDF书签（目录），bookmarks的值改为 false
 \RequirePackage[breaklinks,hidelinks,hypertexnames=true,bookmarks=true,bookmarksopen=true,bookmarksnumbered=true]{hyperref}
-% 如不需要PDF书签（目录），bookmarks的值改为 false
-
-\RequirePackage[boxed,linesnumbered,algochapter]{algorithm2e}
-\RequirePackage[sort&compress]{gbt7714}
+%% 固定宽度的表格。放在 hyperref 之前的话，tabularx 里的 footnote 显示不出来。
+\RequirePackage{tabularx}
+\RequirePackage{longtable}
+\RequirePackage{filehook}
 
 \RequirePackage{fontspec}
 \setmainfont{Times New Roman}
@@ -232,14 +230,15 @@
 \fi
 
 % 减少 ref item 之间的行间距
-\addtolength{\bibsep}{-0.8em}
+\AtEndOfPackageFile*{gbt7714}{
+  \addtolength{\bibsep}{-0.8em}
+}
 
 % 导入原来各种精细化配置
 \setlength{\subfigbottomskip}{0pt}
 \ctexset{chapter={name={,},number={}}}
 \captionsetup{labelsep=space,font=small,justification=centering}
 \arraycolsep=1.7pt
-\graphicspath{{figures/}}
 \renewcommand{\subcapsize}{\zihao{5}}
 \renewcommand{\thesubfigure}{\alph{subfigure})}
 \setcounter{secnumdepth}{4}
@@ -350,7 +349,6 @@
   \load@cjk@font@none
 \fi
 
-\RequirePackage{filehook}
 \AtEndOfPackageFile*{hyperref}{
   \ifsustech@chinese
     \hypersetup{
