@@ -349,3 +349,23 @@
 \else
   \load@cjk@font@none
 \fi
+
+\RequirePackage{filehook}
+\AtEndOfPackageFile*{hyperref}{
+  \ifsustech@chinese
+    \hypersetup{
+      pdflang = zh-CN,
+    }%
+  \else
+    \hypersetup{
+      pdflang = en-US,
+    }%
+  \fi
+  \AtBeginDocument{%
+    \hypersetup{
+      pdftitle    = \sustech@title,
+      pdfauthor   = \sustech@author,
+      pdfsubject  = \report@name,
+    }%
+  }
+}
