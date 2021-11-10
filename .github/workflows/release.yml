@@ -45,7 +45,7 @@ jobs:
         with:
           name: 'pre-release-artifacts_action_build'
           path: |
-            main.pdf
+            main-example.pdf
 
   pre-release:
     name: "Pre Release"
@@ -63,5 +63,5 @@ jobs:
           prerelease: true
           title: "Dev Build（预发布）"
           files: |
-            pre-release-artifacts_action_build/main.pdf
+            pre-release-artifacts_action_build/main-example.pdf
             sustech-master-reports-dev-build/sustech-master-reports-dev-build.zip
