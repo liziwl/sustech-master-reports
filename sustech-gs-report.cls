@@ -367,3 +367,9 @@
     }%
   }
 }
+
+\let\tableofcontentsORIG\tableofcontents
+\renewcommand\tableofcontents{
+  \pdfbookmark[1]{\contentsname}{toc}
+  \tableofcontentsORIG
+}
