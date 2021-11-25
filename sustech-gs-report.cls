@@ -373,3 +373,11 @@
   \pdfbookmark[1]{\contentsname}{toc}
   \tableofcontentsORIG
 }
+
+\AtEndOfPackageFile*{natbib}{
+  \renewcommand\bibsection{
+    \phantomsection
+    \chapter*{\bibname}
+    \addcontentsline{toc}{section}{\bibname}
+  }
+}
