@@ -180,6 +180,7 @@
 \define@key{sustech}{date}{\def\sustech@date{#1}}
 \define@key{sustech}{affil}{\def\sustech@affil{#1}}
 \define@key{sustech}{subject}{\def\sustech@subject{#1}}
+\define@key{sustech}{bibliography-toc-style}{\def\sustech@bib@toc@style{#1}}
 
 \ifsustech@english
   % English
@@ -375,9 +376,20 @@
 }
 
 \AtEndOfPackageFile*{natbib}{
-  \renewcommand\bibsection{
-    \phantomsection
-    \chapter*{\bibname}
-    \addcontentsline{toc}{section}{\bibname}
-  }
+  \newcommand{\bib@nonserial}{nonserial} % 在目录中不标注序号
+  \newcommand{\bib@none}{none} % 不在目录中显示
+  \ifthenelse{\equal{\sustech@bib@toc@style}{\bib@nonserial}}{
+    \renewcommand\bibsection{
+      \phantomsection
+      \addcontentsline{toc}{section}{\bibname}
+      \chapter*{\bibname}
+    }
+  }{}
+  \ifthenelse{\equal{\sustech@bib@toc@style}{\bib@none}}{
+    \renewcommand\bibsection{
+      \phantomsection
+      \pdfbookmark[1]{\bibname}{reference}
+      \chapter*{\bibname}
+    }
+  }{}
 }
