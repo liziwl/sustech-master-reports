@@ -123,11 +123,11 @@
     \hspace*{68pt}{\songti
     \renewcommand{\arraystretch}{1.3}
     \begin{tabular}{l@{}l}
-    \textbf{院\hfill （系）}   & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@affil}\\
-    \textbf{学\hfill 科}     & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@subject}\\
+    \textbf{院\hfill （系）}   & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@department}\\
+    \textbf{学\hfill 科}     & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@discipline}\\
     \textbf{导\hfill 师}     & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@supervisor}\\
     \textbf{研\hfill 究\hfill 生}      & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@author}\\
-    \textbf{学\hfill 号}  & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@stuno}\\
+    \textbf{学\hfill 号}  & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@student@id}\\
     \textbf{\date@name} & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@date}\\
     \end{tabular}
     \renewcommand{\arraystretch}{1}}
@@ -152,11 +152,11 @@
     \hspace*{30pt}{\songti
     \renewcommand{\arraystretch}{1.3}
     \begin{tabular}{l@{}l}
-    \textbf{Department}   & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@affil}\\
-    \textbf{Discipline}     & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@subject}\\
+    \textbf{Department}   & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@department}\\
+    \textbf{Discipline}     & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@discipline}\\
     \textbf{Supervisor}     & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@supervisor}\\
     \textbf{Student Name}      & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@author}\\
-    \textbf{Student Number}  & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@stuno}\\
+    \textbf{Student Number}  & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@student@id}\\
     \textbf{\date@name@en} & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@date}\\
     \end{tabular}
     \renewcommand{\arraystretch}{1}}
@@ -175,11 +175,11 @@
 
 \define@key{sustech}{title}{\def\sustech@title{#1}}
 \define@key{sustech}{author}{\def\sustech@author{#1}}
-\define@key{sustech}{stuno}{\def\sustech@stuno{#1}}
+\define@key{sustech}{student-id}{\def\sustech@student@id{#1}}
 \define@key{sustech}{supervisor}{\def\sustech@supervisor{#1}}
 \define@key{sustech}{date}{\def\sustech@date{#1}}
-\define@key{sustech}{affil}{\def\sustech@affil{#1}}
-\define@key{sustech}{subject}{\def\sustech@subject{#1}}
+\define@key{sustech}{department}{\def\sustech@department{#1}}
+\define@key{sustech}{discipline}{\def\sustech@discipline{#1}}
 \define@key{sustech}{bibliography-toc-style}{\def\sustech@bib@toc@style{#1}}
 
 \ifsustech@english
