@@ -170,6 +170,7 @@
 
 % kvvalue 定义个人信息选项
 \RequirePackage{xkeyval}
+\RequirePackage{etoolbox}
 \newcommand\reportsetup[1]{%
   \setkeys{sustech}{#1}}
 
@@ -180,7 +181,10 @@
 \define@key{sustech}{date}{\def\sustech@date{#1}}
 \define@key{sustech}{department}{\def\sustech@department{#1}}
 \define@key{sustech}{discipline}{\def\sustech@discipline{#1}}
-\define@key{sustech}{bibliography-toc-style}{\def\sustech@bib@toc@style{#1}}
+\define@choicekey{sustech}{bibliography-toc-style}{nonserial,none}[nonserial]{%
+  \def\sustech@bib@toc@style{#1}
+}
+\ifundef{\sustech@bib@toc@style}{\reportsetup{bibliography-toc-style}}
 
 \ifsustech@english
   % English
