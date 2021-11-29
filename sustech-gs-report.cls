@@ -61,7 +61,6 @@
 \RequirePackage{amsmath}
 \RequirePackage{amsfonts}
 \RequirePackage{amssymb}
-\RequirePackage{txfonts}
 \RequirePackage{bm}
 \RequirePackage{graphicx}
 \RequirePackage{enumitem}
@@ -75,10 +74,6 @@
 \RequirePackage{tabularx}
 \RequirePackage{longtable}
 \RequirePackage{filehook}
-
-\RequirePackage{fontspec}
-\setmainfont{Times New Roman}
-\setmonofont{Courier New}
 
 \ifsustech@proposal
   \ifsustech@master
@@ -324,6 +319,14 @@
   \clearpage
   % \@mainmatterfalse
 }
+
+\RequirePackage{fontspec}
+\newcommand\load@font@times{%
+  \setmainfont{Times New Roman}%
+  \setsansfont{Arial}%
+  \setmonofont{Courier New}[Scale = MatchLowercase]%
+}
+\load@font@times
 
 \newcommand\load@cjk@font@none{
   \xeCJKsetup{EmboldenFactor=3.17}%
