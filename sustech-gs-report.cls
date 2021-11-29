@@ -243,14 +243,10 @@
 }
 
 % 导入原来各种精细化配置
-\setlength{\subfigbottomskip}{0pt}
 \ctexset{chapter={name={,},number={}}}
-\captionsetup{labelsep=space,font=small,justification=centering}
 \arraycolsep=1.7pt
-\renewcommand{\subcapsize}{\zihao{5}}
-\renewcommand{\thesubfigure}{\alph{subfigure})}
-\setcounter{secnumdepth}{4}
-\newcommand{\pozhehao}{\raisebox{0.1em}{------}}
+\setcounter{secnumdepth}{4} % 限制目录深度
+% 章节样式
 \titleformat{\chapter}{\center\zihao{-2}\heiti}{\chaptertitlename}{0.5em}{}
 \titlespacing{\chapter}{0pt}{-4.5mm}{8mm}
 \titleformat{\section}{\zihao{-3}\heiti}{\thesection}{0.5em}{}
@@ -263,14 +259,18 @@
 
 
 \renewcommand{\CJKglue}{\hskip 0.56pt plus 0.08\baselineskip} %加大字间距，使每行33个字
-\def\defaultfont{\renewcommand{\baselinestretch}{1.62}\normalsize\selectfont}
-% 调整罗列环境的布局
+% 列表环境的布局
 \setitemize{leftmargin=3em,itemsep=0em,partopsep=0em,parsep=0em,topsep=-0em}
 \setenumerate{leftmargin=3em,itemsep=0em,partopsep=0em,parsep=0em,topsep=0em}
+% 图表编号、样式
 \renewcommand{\theequation}{\arabic{equation}}
 \renewcommand{\thetable}{\arabic{table}}
+\captionsetup{labelsep=space,font=small,justification=centering}
 \renewcommand{\thefigure}{\arabic{figure}}
+\renewcommand{\thesubfigure}{\alph{subfigure})}
+\renewcommand{\subcapsize}{\zihao{5}}
 \renewcommand{\p@subfigure}{\thefigure~}
+\setlength{\subfigbottomskip}{0pt}
 
 
 % 定义页眉和页脚 使用fancyhdr 宏包
