@@ -27,6 +27,7 @@
 \DeclareStringOption[chinese]{language}[chinese]
 \DeclareStringOption[proposal]{type}[proposal]
 \DeclareStringOption[none]{fontsets}[none]
+\DeclareStringOption[auto]{system}[auto]
 \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessKeyvalOptions*
 \newcommand\sustech@validate@key[1]{%
@@ -51,6 +52,12 @@
 \newif\ifsustech@external
 \newif\ifsustech@none
 \sustech@validate@key{fontsets}
+
+\newif\ifsustech@auto
+\newif\ifsustech@windows
+\newif\ifsustech@mac
+\newif\ifsustech@unix
+\sustech@validate@key{system}
 
 \LoadClass[openany,UTF8,zihao=-4]{ctexbook}
 
@@ -176,6 +183,7 @@
 \define@key{sustech}{date}{\def\sustech@date{#1}}
 \define@key{sustech}{department}{\def\sustech@department{#1}}
 \define@key{sustech}{discipline}{\def\sustech@discipline{#1}}
+\define@key{sustech}{system}{\def\sustech@system{#1}}
 \define@choicekey{sustech}{bibliography-toc-style}{nonserial,none}[nonserial]{%
   \def\sustech@bib@toc@style{#1}
 }
@@ -321,12 +329,65 @@
 }
 
 \RequirePackage{fontspec}
+\ifsustech@auto
+  \IfFileExists{/System/Library/Fonts/Menlo.ttc}{
+    \reportsetup{system = mac}
+  }{
+    \IfFileExists{/dev/null}{
+      \IfFileExists{null:}{
+        \reportsetup{system = windows}
+      }{
+        \reportsetup{system = unix}
+      }
+    }{
+      \reportsetup{system = windows}
+    }
+  }
+\fi
+
 \newcommand\load@font@times{%
   \setmainfont{Times New Roman}%
   \setsansfont{Arial}%
-  \setmonofont{Courier New}[Scale = MatchLowercase]%
+  \ifthenelse{\equal{\sustech@system}{mac}}{
+    \setmonofont{Menlo}[Scale = MatchLowercase]%
+  }
+  {
+    \setmonofont{Courier New}[Scale = MatchLowercase]%
+  }
 }
-\load@font@times
+\newcommand\load@font@termes{%
+  \setmainfont{texgyretermes}[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+  ]%
+  \load@texgyre@sans@mono
+}
+\newcommand\load@texgyre@sans@mono{%
+  \setsansfont{texgyreheros}[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+  ]%
+  \setmonofont{texgyrecursor}[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+    Ligatures      = CommonOff,
+  ]%
+}
+\ifthenelse{\equal{\sustech@system}{unix}}{
+    \load@font@termes
+  }
+  {
+    \load@font@times
+}
 
 \newcommand\load@cjk@font@none{
   \xeCJKsetup{EmboldenFactor=3.17}%
