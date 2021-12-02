@@ -81,6 +81,7 @@
 \RequirePackage{tabularx}
 \RequirePackage{longtable}
 \RequirePackage{filehook}
+\RequirePackage{xparse}
 
 \ifsustech@proposal
   \ifsustech@master
@@ -104,37 +105,72 @@
   \def\date@name{年度考核日期}
 \fi
 
+\newcommand{\wideunderline}[2][2em]{%
+  \underline{\makebox[\ifdim\width>#1\width\else#1\fi]{#2}}%
+}
+
+\NewDocumentCommand\thu@info@item@sustech{o m o m}{%
+  {
+    \renewcommand\arraystretch{1.3} % 应该只是对可能会换行的英文 item 生效。
+    \bfseries
+    \IfValueTF{#1}
+    {\begin{tabular}[t]{@{}l@{}}\makebox[#1][s]{#2}\end{tabular}}
+    {\begin{tabular}[t]{@{}l@{}}#2\end{tabular}}
+  } & %
+  {
+    \renewcommand\arraystretch{1.3} % 应该只是对可能会换行的英文 item 生效。
+    \bfseries
+    \IfValueTF{#3}
+    {\begin{tabular}[t]{@{}l@{}}\wideunderline[#3]{#4}\end{tabular}}
+    {\begin{tabular}[t]{@{}l@{}}\wideunderline[15em]{#4}\end{tabular}}
+  }
+}
+
 \newcommand\makecover{%
   \pagenumbering{Roman}%
   \ifsustech@chinese
     % Chinese
-    \thispagestyle{empty}
-    \zihao{-2}\vspace*{10mm}
-    \renewcommand{\CJKglue}{\hskip 2pt plus 0.08\baselineskip}
-    \centerline{\kaishu\textbf{南方科技大学}}
+    \begingroup
+      \thispagestyle{empty}
+      \centering
+      \vspace*{10mm}
+      {
+        \zihao{-2} \kaishu \bfseries %
+        \renewcommand{\CJKglue}{\hskip 2pt plus 0.08\baselineskip}%
+        南方科技大学 \par
+      }
 
-    \vspace{10mm}
-    \centerline{\zihao{2}\songti\textbf{\report@name}}
+      \vspace{10mm}
+      {
+        \zihao{2} \songti \bfseries%
+        \renewcommand{\CJKglue}{\hskip 2pt plus 0.08\baselineskip}%
+        \report@name \par
+      }
 
-    \renewcommand{\CJKglue}{\hskip 0pt plus 0.08\baselineskip}
-    \vspace{30pt}
-    \zihao{-2}
-    \begin{center}\songti\textbf{题~目：\sustech@title}\end{center}
-    \vspace{30pt}
-    \zihao{3}
-    \hspace*{68pt}{\songti
-    \renewcommand{\arraystretch}{1.3}
-    \begin{tabular}{l@{}l}
-    \textbf{院\hfill （系）}   & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@department}\\
-    \textbf{学\hfill 科}     & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@discipline}\\
-    \textbf{导\hfill 师}     & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@supervisor}\\
-    \textbf{研\hfill 究\hfill 生}      & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@author}\\
-    \textbf{学\hfill 号}  & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@student@id}\\
-    \textbf{\date@name} & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\sustech@date}\\
-    \end{tabular}
-    \renewcommand{\arraystretch}{1}}
-    \vfill
-    \centerline{\songti\textbf{研究生院制}}
+      \vspace{30pt}
+      \parbox[t]{30em}{
+        \centering
+        \zihao{-2} \songti \bfseries%
+        题~目：\sustech@title}
+      \par
+
+      \vspace*{30pt}
+      {\zihao{3} \songti
+        \begin{tabular}{l@{}l}
+          \thu@info@item@sustech[6em]{院（系）}[10em]{\sustech@department}\\
+          \thu@info@item@sustech[6em]{学科}[10em]{\sustech@discipline}\\
+          \thu@info@item@sustech[6em]{导师}[10em]{\sustech@supervisor}\\
+          \thu@info@item@sustech[6em]{研究生}[10em]{\sustech@author}\\
+          \thu@info@item@sustech[6em]{学号}[10em]{\sustech@student@id}\\
+          \thu@info@item@sustech[6em]{\date@name}[10em]{\sustech@date}
+        \end{tabular}
+      }\par
+      \vfill
+
+      {
+        \zihao{3} \songti \bfseries 研究生院制 \par
+      }
+    \endgroup
   \else%
     % English
     \thispagestyle{empty}
@@ -151,17 +187,27 @@
     \begin{center}\textbf{Title：\sustech@title}\end{center}
     \vspace{30pt}
     \zihao{3}
-    \hspace*{30pt}{\songti
-    \renewcommand{\arraystretch}{1.3}
-    \begin{tabular}{l@{}l}
-    \textbf{Department}   & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@department}\\
-    \textbf{Discipline}     & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@discipline}\\
-    \textbf{Supervisor}     & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@supervisor}\\
-    \textbf{Student Name}      & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@author}\\
-    \textbf{Student Number}  & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@student@id}\\
-    \textbf{\date@name@en} & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@date}\\
-    \end{tabular}
-    \renewcommand{\arraystretch}{1}}
+    {
+      \centering
+    % \renewcommand{\arraystretch}{1.3}
+      \begin{tabular}{@{}m{0.35\textwidth}m{0.6\textwidth}@{}}
+        \thu@info@item@sustech{Department}{\sustech@department}\\
+        \thu@info@item@sustech{Discipline}{\sustech@discipline}\\
+        \thu@info@item@sustech{Supervisor}{\sustech@supervisor}\\
+        \thu@info@item@sustech{Student Name}{\sustech@author}\\
+        \thu@info@item@sustech{Student Number}{\sustech@student@id}\\
+        \thu@info@item@sustech{\date@name@en}{\sustech@date}
+      \end{tabular}
+      % \begin{tabular}{l@{}l}
+      % \textbf{Department}   & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@department}\\
+      % \textbf{Discipline}     & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@discipline}\\
+      % \textbf{Supervisor}     & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@supervisor}\\
+      % \textbf{Student Name}      & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@author}\\
+      % \textbf{Student Number}  & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@student@id}\\
+      % \textbf{\date@name@en} & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@date}\\
+      % \end{tabular}
+      % \renewcommand{\arraystretch}{1}
+    }
     \vfill
     \centerline{\songti\textbf{Graduate School}}
   \fi
