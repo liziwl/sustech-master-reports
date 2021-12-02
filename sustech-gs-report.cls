@@ -82,6 +82,7 @@
 \RequirePackage{longtable}
 \RequirePackage{filehook}
 \RequirePackage{xparse}
+\RequirePackage{listofitems}
 
 \ifsustech@proposal
   \ifsustech@master
@@ -106,24 +107,49 @@
 \fi
 
 \newcommand{\wideunderline}[2][2em]{%
-  \underline{\makebox[\ifdim\width>#1\width\else#1\fi]{#2}}%
+  \CJKunderline{\makebox[#1]{#2}}%
 }
 
-\NewDocumentCommand\sustech@info@item{o m o m}{%
+\NewDocumentCommand\sustech@info@item{s o m o m}{%
   {
     \renewcommand\arraystretch{1.3} % 应该只是对可能会换行的英文 item 生效。
     \bfseries
-    \IfValueTF{#1}
-    {\begin{tabular}[t]{@{}l@{}}\makebox[#1][s]{#2}\end{tabular}}
-    {\begin{tabular}[t]{@{}l@{}}#2\end{tabular}}
+    \IfValueTF{#2}
+    {\begin{tabular}[t]{@{}l@{}}\makebox[#2][s]{#3}\end{tabular}}
+    {\begin{tabular}[t]{@{}l@{}}#3\end{tabular}}
   } & %
   {
     \renewcommand\arraystretch{1.3} % 应该只是对可能会换行的英文 item 生效。
     \bfseries
-    \IfValueTF{#3}
-    {\begin{tabular}[t]{@{}l@{}}\wideunderline[#3]{#4}\end{tabular}}
-    {\begin{tabular}[t]{@{}l@{}}\wideunderline[15em]{#4}\end{tabular}}
+    \IfBooleanTF{#1}
+    {%有星号
+      \IfValueTF{#4}
+      {\sustech@info@multiline[#4]{#5}}
+      {\sustech@info@multiline[15em]{#5}}
+    }
+    {%没星号
+      \IfValueTF{#4}
+      {\sustech@info@singleline[#4]{#5}}
+      {\sustech@info@singleline[15em]{#5}}
+    }
   }
+}
+
+\newcommand{\sustech@info@singleline}[2][2em]{
+  \begin{tabular}[t]{@{}l@{}}\wideunderline[#1]{#2}\end{tabular}
+}
+
+\newcommand{\sustech@info@multiline}[2][2em]{
+  \setsepchar{\\}%
+  \readlist\foo#2%
+  \def\efoo{}%
+  \foreachitem\y\in\foo[]{%
+    \listeadd{\efoo}{\y}%
+  }%
+  \renewcommand*{\do}[1]{\wideunderline[#1]{##1}\\}%
+  \begin{tabular}[t]{@{}l@{}}%
+    \dolistloop{\efoo}
+  \end{tabular}
 }
 
 \newcommand\makecover{%
@@ -157,9 +183,9 @@
       \vspace*{30pt}
       {\zihao{3} \songti
         \begin{tabular}{l@{}l}
-          \sustech@info@item[6em]{院（系）}[10em]{\sustech@department}\\
-          \sustech@info@item[6em]{学科}[10em]{\sustech@discipline}\\
-          \sustech@info@item[6em]{导师}[10em]{\sustech@supervisor}\\
+          \sustech@info@item*[6em]{院（系）}[10em]{\sustech@department}\\
+          \sustech@info@item*[6em]{学科}[10em]{\sustech@discipline}\\
+          \sustech@info@item*[6em]{导师}[10em]{\sustech@supervisor}\\
           \sustech@info@item[6em]{研究生}[10em]{\sustech@author}\\
           \sustech@info@item[6em]{学号}[10em]{\sustech@student@id}\\
           \sustech@info@item[6em]{\date@name}[10em]{\sustech@date}
@@ -200,9 +226,9 @@
       \vspace*{30pt}
       {\zihao{3}
         \begin{tabular}{l@{}l}
-          \sustech@info@item{Department}[16em]{\sustech@department}\\
-          \sustech@info@item{Discipline}[16em]{\sustech@discipline}\\
-          \sustech@info@item{Supervisor}[16em]{\sustech@supervisor}\\
+          \sustech@info@item*{Department}[16em]{\sustech@department}\\
+          \sustech@info@item*{Discipline}[16em]{\sustech@discipline}\\
+          \sustech@info@item*{Supervisor}[16em]{\sustech@supervisor}\\
           \sustech@info@item{Student Name}[16em]{\sustech@author}\\
           \sustech@info@item{Student Number}[16em]{\sustech@student@id}\\
           \sustech@info@item{\date@name@en}[16em]{\sustech@date}
