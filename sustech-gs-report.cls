@@ -109,7 +109,7 @@
   \underline{\makebox[\ifdim\width>#1\width\else#1\fi]{#2}}%
 }
 
-\NewDocumentCommand\thu@info@item@sustech{o m o m}{%
+\NewDocumentCommand\sustech@info@item{o m o m}{%
   {
     \renewcommand\arraystretch{1.3} % 应该只是对可能会换行的英文 item 生效。
     \bfseries
@@ -157,12 +157,12 @@
       \vspace*{30pt}
       {\zihao{3} \songti
         \begin{tabular}{l@{}l}
-          \thu@info@item@sustech[6em]{院（系）}[10em]{\sustech@department}\\
-          \thu@info@item@sustech[6em]{学科}[10em]{\sustech@discipline}\\
-          \thu@info@item@sustech[6em]{导师}[10em]{\sustech@supervisor}\\
-          \thu@info@item@sustech[6em]{研究生}[10em]{\sustech@author}\\
-          \thu@info@item@sustech[6em]{学号}[10em]{\sustech@student@id}\\
-          \thu@info@item@sustech[6em]{\date@name}[10em]{\sustech@date}
+          \sustech@info@item[6em]{院（系）}[10em]{\sustech@department}\\
+          \sustech@info@item[6em]{学科}[10em]{\sustech@discipline}\\
+          \sustech@info@item[6em]{导师}[10em]{\sustech@supervisor}\\
+          \sustech@info@item[6em]{研究生}[10em]{\sustech@author}\\
+          \sustech@info@item[6em]{学号}[10em]{\sustech@student@id}\\
+          \sustech@info@item[6em]{\date@name}[10em]{\sustech@date}
         \end{tabular}
       }\par
       \vfill
@@ -173,43 +173,47 @@
     \endgroup
   \else%
     % English
-    \thispagestyle{empty}
-    \zihao{-2}\vspace*{10mm}
-    \renewcommand{\CJKglue}{\hskip 2pt plus 0.08\baselineskip}
-    \centerline{\zihao{2}\textbf{Southern University of Science and Technology}}
-
-    \vspace{10mm}
-    \centerline{\zihao{2}\textbf{\report@name@en}}
-
-    \renewcommand{\CJKglue}{\hskip 0pt plus 0.08\baselineskip}
-    \vspace{30pt}
-    \zihao{-2}
-    \begin{center}\textbf{Title：\sustech@title}\end{center}
-    \vspace{30pt}
-    \zihao{3}
-    {
+    \begingroup
+      \thispagestyle{empty}
       \centering
-    % \renewcommand{\arraystretch}{1.3}
-      \begin{tabular}{@{}m{0.35\textwidth}m{0.6\textwidth}@{}}
-        \thu@info@item@sustech{Department}{\sustech@department}\\
-        \thu@info@item@sustech{Discipline}{\sustech@discipline}\\
-        \thu@info@item@sustech{Supervisor}{\sustech@supervisor}\\
-        \thu@info@item@sustech{Student Name}{\sustech@author}\\
-        \thu@info@item@sustech{Student Number}{\sustech@student@id}\\
-        \thu@info@item@sustech{\date@name@en}{\sustech@date}
-      \end{tabular}
-      % \begin{tabular}{l@{}l}
-      % \textbf{Department}   & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@department}\\
-      % \textbf{Discipline}     & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@discipline}\\
-      % \textbf{Supervisor}     & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@supervisor}\\
-      % \textbf{Student Name}      & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@author}\\
-      % \textbf{Student Number}  & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@student@id}\\
-      % \textbf{\date@name@en} & \rule[-4pt]{250pt}{1pt}\hspace{-352pt}\centerline{\textbf\sustech@date}\\
-      % \end{tabular}
-      % \renewcommand{\arraystretch}{1}
-    }
-    \vfill
-    \centerline{\songti\textbf{Graduate School}}
+      \vspace*{10mm}
+      {
+        \zihao{2} \bfseries %
+        \renewcommand{\CJKglue}{\hskip 2pt plus 0.08\baselineskip}%
+        Southern University of Science and Technology \par
+      }
+
+      \vspace{10mm}
+      {
+        \zihao{2} \bfseries%
+        \renewcommand{\CJKglue}{\hskip 2pt plus 0.08\baselineskip}%
+        \report@name@en \par
+      }
+
+      \vspace{30pt}
+      \parbox[t]{30em}{
+        \centering
+        \zihao{-2} \bfseries%
+        Title：\sustech@title}
+      \par
+
+      \vspace*{30pt}
+      {\zihao{3}
+        \begin{tabular}{l@{}l}
+          \sustech@info@item{Department}[16em]{\sustech@department}\\
+          \sustech@info@item{Discipline}[16em]{\sustech@discipline}\\
+          \sustech@info@item{Supervisor}[16em]{\sustech@supervisor}\\
+          \sustech@info@item{Student Name}[16em]{\sustech@author}\\
+          \sustech@info@item{Student Number}[16em]{\sustech@student@id}\\
+          \sustech@info@item{\date@name@en}[16em]{\sustech@date}
+        \end{tabular}
+      }\par
+      \vfill
+
+      {
+        \zihao{3} \bfseries Graduate School \par
+      }
+    \endgroup
   \fi
   \clearpage
   \setcounter{page}{1}
