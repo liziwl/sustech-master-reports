@@ -106,7 +106,7 @@
   \def\date@name{年度考核日期}
 \fi
 
-\newcommand{\wideunderline}[2][2em]{%
+\newcommand{\ulbox}[2][2em]{%
   \CJKunderline{\makebox[#1]{#2}}%
 }
 
@@ -136,19 +136,19 @@
 }
 
 \newcommand{\sustech@info@singleline}[2][2em]{
-  \begin{tabular}[t]{@{}l@{}}\wideunderline[#1]{#2}\end{tabular}
+  \begin{tabular}[t]{@{}l@{}}\ulbox[#1]{#2}\end{tabular}
 }
 
 \newcommand{\sustech@info@multiline}[2][2em]{
   \setsepchar{\\}%
-  \readlist\foo#2%
-  \def\efoo{}%
-  \foreachitem\y\in\foo[]{%
-    \listeadd{\efoo}{\y}%
+  \readlist\tmp@list#2%
+  \def\e@tmp@list{}%
+  \foreachitem\y\in\tmp@list[]{%
+    \listeadd{\e@tmp@list}{\y}%
   }%
-  \renewcommand*{\do}[1]{\wideunderline[#1]{##1}\\}%
+  \renewcommand*{\do}[1]{\ulbox[#1]{##1}\\}%
   \begin{tabular}[t]{@{}l@{}}%
-    \dolistloop{\efoo}
+    \dolistloop{\e@tmp@list}
   \end{tabular}
 }
 
