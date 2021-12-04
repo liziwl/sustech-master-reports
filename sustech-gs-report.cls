@@ -109,7 +109,7 @@
 \RequirePackage{xeCJKfntef}
 
 \newcommand{\ulbox}[2][2em]{%
-  \CJKunderline{\makebox[#1]{#2}}%
+  \CJKunderline[thickness=1pt]{\makebox[#1]{#2}}%
 }
 
 \NewDocumentCommand\sustech@info@item{s o m o m}{%
