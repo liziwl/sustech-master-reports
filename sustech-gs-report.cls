@@ -82,7 +82,6 @@
 \RequirePackage{longtable}
 \RequirePackage{filehook}
 \RequirePackage{xparse}
-\RequirePackage{listofitems}
 
 \ifsustech@proposal
   \ifsustech@master
@@ -105,6 +104,9 @@
   \def\date@name@en{Submission Date}
   \def\date@name{年度考核日期}
 \fi
+
+\RequirePackage{listofitems}
+\RequirePackage{xeCJKfntef}
 
 \newcommand{\ulbox}[2][2em]{%
   \CJKunderline{\makebox[#1]{#2}}%
