@@ -64,11 +64,32 @@
 \RequirePackage[a4paper,text={160true mm,234true mm},top=30.5true mm,left=25true mm,head=5true mm,headsep=2.5true mm,foot=8.5true mm]{geometry}
 \RequirePackage{booktabs}
 \RequirePackage{caption}
-\RequirePackage{amsthm}
 \RequirePackage{amsmath}
-\RequirePackage{amsfonts}
+\RequirePackage{amsthm}
 \RequirePackage{amssymb}
+\RequirePackage{amsfonts}
 \RequirePackage{bm}
+
+% 如果使用 {unicode-math} 需要禁用 {amsfonts}, {bm}, {amssymb}
+% \RequirePackage[math-style=ISO, bold-style=ISO]{unicode-math}
+% \IfFontExistsTF{XITSMath-Regular.otf}{
+%   \setmathfont[
+%     Extension    = .otf,
+%     BoldFont     = XITSMath-Bold,
+%     StylisticSet = 8,
+%   ]{XITSMath-Regular}
+%   \setmathfont[range={cal,bfcal},StylisticSet=1]{XITSMath-Regular.otf}
+% }{
+%   \setmathfont[
+%     Extension    = .otf,
+%     BoldFont     = *bold,
+%     StylisticSet = 8,
+%   ]{xits-math}
+%   \setmathfont[range={cal,bfcal},StylisticSet=1]{xits-math.otf}
+% }
+% \DeclareRobustCommand\bm[1]{{\symbf{#1}}}
+% \DeclareRobustCommand\boldsymbol[1]{{\symbf{#1}}}
+
 \RequirePackage{graphicx}
 \RequirePackage{enumitem}
 \RequirePackage{fancyhdr}
