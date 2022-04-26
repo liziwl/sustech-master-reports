@@ -66,29 +66,16 @@
 \RequirePackage{caption}
 \RequirePackage{amsmath}
 \RequirePackage{amsthm}
-\RequirePackage{amssymb}
-\RequirePackage{amsfonts}
-\RequirePackage{bm}
+% \RequirePackage{amssymb}
+% \RequirePackage{amsfonts}
+% \RequirePackage{bm}
 
-% 如果使用 {unicode-math} 需要禁用 {amsfonts}, {bm}, {amssymb}
-% \RequirePackage[math-style=ISO, bold-style=ISO]{unicode-math}
-% \IfFontExistsTF{XITSMath-Regular.otf}{
-%   \setmathfont[
-%     Extension    = .otf,
-%     BoldFont     = XITSMath-Bold,
-%     StylisticSet = 8,
-%   ]{XITSMath-Regular}
-%   \setmathfont[range={cal,bfcal},StylisticSet=1]{XITSMath-Regular.otf}
-% }{
-%   \setmathfont[
-%     Extension    = .otf,
-%     BoldFont     = *bold,
-%     StylisticSet = 8,
-%   ]{xits-math}
-%   \setmathfont[range={cal,bfcal},StylisticSet=1]{xits-math.otf}
-% }
-% \DeclareRobustCommand\bm[1]{{\symbf{#1}}}
-% \DeclareRobustCommand\boldsymbol[1]{{\symbf{#1}}}
+% {unicode-math} 与 {amssymb}, {amsfonts}, {bm} 兼容性不好
+\RequirePackage[math-style=ISO,bold-style=ISO]{unicode-math}
+% TeX Gyre Termes can be used as a replacement for the renowned Times (new) Roman font.
+\setmathfont{texgyretermes-math.otf}
+\DeclareRobustCommand\bm[1]{{\symbf{#1}}}
+\DeclareRobustCommand\boldsymbol[1]{{\symbf{#1}}}
 
 \RequirePackage{graphicx}
 \RequirePackage{enumitem}
@@ -305,7 +292,7 @@
   \newtheorem{corollary}{Corollary}
   \newtheorem{remark}{Remark}
   \renewcommand{\proofname}{\bf Proof}
-  \renewcommand{\qedsymbol}{$\blacksquare$} % 证毕符号改成黑色的正方形
+  \renewcommand{\qedsymbol}{\ensuremath{\QED}} % 证毕符号改成黑色的正方形
 \else
   % Chinese
   \ctexset{bibname={主要参考文献}}
@@ -333,7 +320,7 @@
   \newtheorem{corollary}{\indent \heiti 推论}
   \newtheorem{remark}{\indent \heiti 注解}
   \renewcommand{\proofname}{\indent \heiti 证明}
-  \renewcommand{\qedsymbol}{$\blacksquare$} % 证毕符号改成黑色的正方形
+  \renewcommand{\qedsymbol}{\ensuremath{\QED}} % 证毕符号改成黑色的正方形
 \fi
 
 % 减少 ref item 之间的行间距
