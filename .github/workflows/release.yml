@@ -19,14 +19,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Compile LaTeX document
-        uses: xu-cheng/texlive-action/full@v1
-        with:
-          run: |
-            apk add make
-            apk --no-cache add msttcorefonts-installer fontconfig && update-ms-fonts && fc-cache -f
-            make all
-            make clean
+      - name: Build the Docker image
+        run: |
+          docker build . --file .github/workflows/Dockerfile --tag sustech-gs-report
+          docker run --rm -v "$(pwd)":/docs sustech-gs-report /bin/bash -c "make cleanall && make && make clean"
 
       - name: Archive Release
         uses: thedoctor0/zip-release@master

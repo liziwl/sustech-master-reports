@@ -10,7 +10,4 @@ RUN apt update && \
     apt update && \
     apt install -y ttf-mscorefonts-installer
 
-ADD . /docs
 WORKDIR /docs
-
-RUN make cleanall && make

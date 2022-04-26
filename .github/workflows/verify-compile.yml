@@ -16,9 +16,7 @@ jobs:
       - name: Build the Docker image
         run: |
           docker build . --file .github/workflows/Dockerfile --tag sustech-gs-report --build-arg TEXLIVE_TAG=${{ matrix.texlive }}
-          docker run --cidfile build.cid sustech-gs-report
-          CID=`cat build.cid`
-          docker cp $CID:/docs/main-example.pdf .
+          docker run --rm -v "$(pwd)":/docs sustech-gs-report /bin/bash -c "make cleanall && make"
 
       - name: Publish PDF as actions assets
         uses: actions/upload-artifact@v2
