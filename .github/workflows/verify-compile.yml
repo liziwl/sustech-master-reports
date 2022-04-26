@@ -5,20 +5,23 @@ on: [push, pull_request]
 jobs:
   build_latex:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        texlive: [TL2020-historic, latest]
+        # 多版本 TexLive 兼容性测试
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Compile LaTeX document
-        uses: xu-cheng/texlive-action/full@v1
-        with:
-          run: |
-            apk add make
-            apk --no-cache add msttcorefonts-installer fontconfig && update-ms-fonts && fc-cache -f
-            make all
+      - name: Build the Docker image
+        run: |
+          docker build . --file .github/workflows/Dockerfile --tag sustech-gs-report --build-arg TEXLIVE_TAG=${{ matrix.texlive }}
+          docker run --cidfile build.cid sustech-gs-report
+          CID=`cat build.cid`
+          docker cp $CID:/docs/main-example.pdf .
 
       - name: Publish PDF as actions assets
         uses: actions/upload-artifact@v2
         with:
-          name: Example-PDF
+          name: Example-PDFs-texlive-${{ matrix.texlive }}
           path: main-example.pdf
